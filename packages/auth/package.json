@@ -1,0 +1,14 @@
+{
+  "name": "@dgrandeur/auth",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.12"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0"
+  }
+}

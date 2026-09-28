@@ -1,0 +1,20 @@
+{
+  "name": "dgrandeur",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "db:migrate": "pnpm --filter @dgrandeur/db exec prisma migrate dev",
+    "db:deploy": "pnpm --filter @dgrandeur/db exec prisma migrate deploy",
+    "db:studio": "pnpm --filter @dgrandeur/db exec prisma studio",
+    "db:seed": "pnpm --filter @dgrandeur/db exec tsx prisma/seed.ts",
+    "db:generate": "pnpm --filter @dgrandeur/db exec prisma generate"
+  },
+  "devDependencies": {
+    "turbo": "latest",
+    "typescript": "^5.0.0"
+  }
+}
