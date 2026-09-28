@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
+import path from 'path'
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const config: NextConfig = {
+  turbopack: {
+    root: path.resolve(__dirname, '../../'),
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '9000',
+      },
+    ],
+  },
+}
 
-export default nextConfig;
+export default config
