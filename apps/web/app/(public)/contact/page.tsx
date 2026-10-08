@@ -1,7 +1,16 @@
+import { ConversionDoors, ProposalForm, ViewingForm } from "@/components/enquiry";
+import { Navbar } from "@/components/home/Navbar";
+import { SiteFooter } from "@/components/home/SiteFooter";
 export default function ContactPage() {
   return (
-    <main>
-      <h1>Contact</h1>
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <ConversionDoors />
+        <ViewingForm />
+        <ProposalForm />
+      </main>
+      <SiteFooter />
+    </>
   );
 }

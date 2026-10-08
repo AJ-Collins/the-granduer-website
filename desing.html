@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eventro — Hero</title>
+
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+<!-- GLOBAL BRAND COLORS — reuse these same tokens on every other section -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            navy:      '#1C2C3C',
+            'navy-2':  '#14202C',
+            'navy-50': '#41505F',
+            ivory:     '#F4F1EA',
+            'ivory-2': '#FFFFFF',
+            mist:      '#C9CDD4',
+          },
+        },
+        fontFamily: {
+          serif: ['Georgia', 'Cambria', '"Times New Roman"', 'serif'],
+          sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  /* Navbar: transparent on top, translucent navy + blur once scrolled */
+  #site-header { transition: background-color .35s ease, box-shadow .35s ease; }
+  #site-header.is-scrolled {
+    background-color: #1C2C3C;
+    box-shadow: 0 4px 24px rgba(20, 32, 44, 0.35);
+  }
+  #site-header .nav-inner { transition: padding .35s ease; }
+  #site-header.is-scrolled .nav-inner { padding-top: 1rem; padding-bottom: 1rem; }
+  .reveal { opacity: 0; transform: translateY(24px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: var(--d, 0s); }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .text-soft-shadow { text-shadow: 0 2px 18px rgba(20, 32, 44, 0.45); }
+</style>
+</head>
+
+<body class="bg-brand-ivory font-sans text-brand-navy">
+
+  <!-- ============ NAVBAR (fixed, transparent over the video) ============ -->
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50">
+    <nav class="nav-inner max-w-[1800px] mx-auto flex items-center justify-between px-10 lg:px-20 py-8">
+
+      <a href="#" class="flex items-center gap-3">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" class="text-brand-ivory">
+          <path d="M12 2C12 2 8 6 8 10C8 12.2 9.8 14 12 14C14.2 14 16 12.2 16 10C16 6 12 2 12 2Z" fill="currentColor"/>
+          <path d="M12 14V22" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 18C12 18 8 17 7 20" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M12 18C12 18 16 17 17 20" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="font-serif italic text-4xl text-brand-ivory">Eventro</span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-1 bg-brand-navy border border-brand-navy-50 rounded-full px-3 py-3">
+        <li><a href="#" class="bg-brand-ivory text-brand-navy text-lg font-medium px-7 py-3.5 rounded-full">Home</a></li>
+        <li><a href="#" class="text-lg font-medium text-brand-mist px-7 py-3.5 hover:text-brand-ivory transition">About Us</a></li>
+        <li><a href="#" class="text-lg font-medium text-brand-mist px-7 py-3.5 hover:text-brand-ivory transition">Services</a></li>
+        <li><a href="#" class="text-lg font-medium text-brand-mist px-7 py-3.5 hover:text-brand-ivory transition">Blogs</a></li>
+        <li><a href="#" class="text-lg font-medium text-brand-mist px-7 py-3.5 hover:text-brand-ivory transition">Contact Us</a></li>
+      </ul>
+
+      <div class="hidden md:flex items-center gap-5">
+        <a href="#" class="flex items-center gap-3 bg-brand-ivory hover:bg-brand-mist transition text-brand-navy text-lg font-medium px-8 py-4 rounded-full">
+          Book Now
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </a>
+        <a href="#" class="border border-brand-ivory text-brand-ivory text-lg font-medium px-8 py-4 rounded-full hover:bg-brand-ivory hover:text-brand-navy transition">Contact Us</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ HERO (video background) ============ -->
+  <section class="hero relative min-h-screen flex items-center bg-brand-navy">
+
+    <!-- video + tint are clipped in their own layer so the gallery can overflow the hero -->
+    <div class="absolute inset-0 overflow-hidden">
+      <video
+        class="hero-video absolute inset-0 w-full h-full object-cover"
+        autoplay muted loop playsinline
+        poster="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=85"
+      >
+        <source src="https://videos.pexels.com/video-files/34926864/14794499_1920_1080_24fps.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-brand-navy/30"></div>
+    </div>
+
+    <!-- text -->
+    <div class="relative z-10 max-w-[1800px] mx-auto px-10 lg:px-20 pt-36 pb-32 w-full">
+      <div class="max-w-xl">
+        <svg width="260" height="56" viewBox="0 0 420 90" fill="none" class="mb-8">
+          <path d="M2 10 C 110 0, 310 0, 418 10" stroke="#F4F1EA" stroke-width="1.5"/>
+          <g>
+            <polygon points="12,10 44,10 28,54" fill="#F4F1EA"/>
+            <polygon points="60,9 92,9 76,52" fill="#C9CDD4"/>
+            <polygon points="108,9 140,9 124,52" fill="#F4F1EA"/>
+            <polygon points="156,9 188,9 172,52" fill="#C9CDD4"/>
+            <polygon points="204,9 236,9 220,52" fill="#F4F1EA"/>
+            <polygon points="252,9 284,9 268,52" fill="#C9CDD4"/>
+            <polygon points="300,9 332,9 316,52" fill="#F4F1EA"/>
+            <polygon points="348,9 380,9 364,52" fill="#C9CDD4"/>
+          </g>
+        </svg>
+
+        <h1 class="text-soft-shadow font-serif text-6xl xl:text-7xl 2xl:text-8xl leading-[1.04] text-brand-ivory">
+          Create <span class="italic">Special</span><br>Moments
+        </h1>
+
+        <p class="text-soft-shadow mt-6 text-brand-ivory text-xl leading-relaxed max-w-sm">
+          Unforgettable events, designed around your vision.
+        </p>
+
+        <div class="mt-10 flex flex-wrap items-center gap-5">
+          <a href="#" class="flex items-center gap-3 bg-brand-ivory hover:bg-brand-mist transition text-brand-navy text-lg font-medium px-9 py-5 rounded-full">
+            Book Now
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </a>
+          <a href="#" class="border border-brand-ivory text-brand-ivory text-lg font-medium px-9 py-5 rounded-full hover:bg-brand-ivory hover:text-brand-navy transition">Explore Services</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY: straddles the hero's bottom edge.
+         Change translate-y-[55%] to push it lower (more in next section) or higher (more in hero). -->
+    <div class="hidden lg:block absolute inset-x-0 bottom-0 z-30 translate-y-[55%] pointer-events-none">
+      <div class="max-w-[1800px] mx-auto px-10 lg:px-20 flex justify-end">
+        <div class="grid grid-cols-[1fr_1.25fr_1fr] gap-5 h-[520px] w-full max-w-[720px]">
+
+          <!-- left: bottom-aligned -->
+          <div class="reveal flex items-end" style="--d:.15s">
+            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=600&q=80"
+                 alt="Round table with flower centerpiece"
+                 class="w-full h-[62%] object-cover rounded-[4px] border-[6px] border-brand-ivory shadow-[0_24px_50px_-18px_rgba(20,32,44,.55)]">
+          </div>
+
+          <!-- centre: full height -->
+          <div class="reveal" style="--d:0s">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=80"
+                 alt="Banquet hall set for an event"
+                 class="w-full h-full object-cover rounded-[4px] border-[6px] border-brand-ivory shadow-[0_30px_60px_-20px_rgba(20,32,44,.6)]">
+          </div>
+
+          <!-- right: top-aligned -->
+          <div class="reveal flex items-start" style="--d:.3s">
+            <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=600&q=80"
+                 alt="Table glassware and napkins"
+                 class="w-full h-[62%] object-cover rounded-[4px] border-[6px] border-brand-ivory shadow-[0_24px_50px_-18px_rgba(20,32,44,.55)]">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next section: top padding makes room for the part of the gallery that overlaps in. Replace with your real section. -->
+  <section class="bg-brand-ivory pt-[340px] pb-24 min-h-[80vh]">
+    <div class="max-w-[1800px] mx-auto px-10 lg:px-20">
+      <p class="font-serif text-3xl text-brand-navy-50">Next section goes here</p>
+    </div>
+  </section>
+
+  <script>
+    // Navbar: transparent at top → translucent navy + blur after scrolling
+    const header = document.getElementById("site-header");
+    const toggleHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 40);
+    toggleHeader();
+    window.addEventListener("scroll", toggleHeader, { passive: true });
+
+    // Hero video fallback
+    const heroVideo = document.querySelector(".hero-video");
+    heroVideo.addEventListener("error", () => {
+      heroVideo.style.display = "none";
+      document.querySelector(".hero").style.background =
+        "url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2200&q=85') center/cover";
+    });
+  </script>
+
+</body>
+</html>
