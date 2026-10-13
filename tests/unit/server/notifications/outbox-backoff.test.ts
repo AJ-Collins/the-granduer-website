@@ -1,10 +1,8 @@
 import { describe, expect, it } from "vitest";
-import {
-  backoffMinutes,
-  mayRetry,
-  nextAttemptAt,
-  OUTBOX_MAX_ATTEMPTS,
-} from "@/server/notifications/services/outbox-backoff";
+import { backoffMinutes } from "@/server/notifications/services/backoff/backoff-minutes";
+import { mayRetry } from "@/server/notifications/services/backoff/may-retry";
+import { nextAttemptAt } from "@/server/notifications/services/backoff/next-attempt-at";
+import { OUTBOX_MAX_ATTEMPTS } from "@/server/notifications/services/backoff/outbox-policy";
 
 describe("outbox retries", () => {
   it("allows exactly 3 attempts", () => {

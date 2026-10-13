@@ -1,12 +1,6 @@
-export type UploadForm = { file: File; prefix: string };
+import { InvalidUploadFormError } from "./errors/invalid-upload-form-error";
 
-export class InvalidUploadFormError extends Error {
-  readonly status = 400;
-  constructor() {
-    super("Expected multipart form with a file field");
-    this.name = "InvalidUploadFormError";
-  }
-}
+export type UploadForm = { file: File; prefix: string };
 
 export async function readUploadForm(req: Request): Promise<UploadForm> {
   const form = await req.formData().catch(() => null);

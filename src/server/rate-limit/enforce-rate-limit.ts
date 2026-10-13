@@ -1,6 +1,7 @@
-import { fail } from "../http/api-response";
-import { rateLimitStore } from "./get-rate-limit-store";
-import { LIMITERS, limiterContext, type LimiterContext, type LimiterName } from "./limiters";
+import { fail } from "../http/fail-response";
+import { rateLimitStore } from "./stores/get-rate-limit-store";
+import { LIMITERS, type LimiterContext, type LimiterName } from "./limiters";
+import { limiterContext } from "./limiter-context";
 
 export type RateLimitOutcome = {
   blocked: Response | null;

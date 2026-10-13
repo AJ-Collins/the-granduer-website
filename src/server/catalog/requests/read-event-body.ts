@@ -7,7 +7,4 @@ export const eventBodySchema = z.object({
   sortOrder: z.number().int().min(0).optional(),
 });
 
-export const eventPatchSchema = eventBodySchema.partial().omit({ slug: true });
-
 export type EventInput = z.infer<typeof eventBodySchema>;
-export type EventPatch = z.infer<typeof eventPatchSchema>;

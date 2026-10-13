@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { hostOf } from "@/server/hosts/host-of";
-import { stripPrefix } from "@/server/hosts/strip-prefix";
-import { surfaceOf } from "@/server/hosts/surface-of";
+import { hostOf } from "@/server/hosts/routing/host-of";
+import { stripPrefix } from "@/server/hosts/routing/strip-prefix";
+import { surfaceOf } from "@/server/hosts/routing/surface-of";
 
 describe("host dispatch", () => {
   it("classifies localhost surfaces", () => {

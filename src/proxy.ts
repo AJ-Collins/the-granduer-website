@@ -1,13 +1,13 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { handleAdminHost } from "./server/hosts/handle-admin";
-import { handleCmsHost } from "./server/hosts/handle-cms";
-import { handleWebHost } from "./server/hosts/handle-web";
-import { hasSession } from "./server/hosts/has-session";
-import { hostOf } from "./server/hosts/host-of";
-import { isForeignSessionApiRequest } from "./server/hosts/is-foreign-session-api";
-import { surfaceOf } from "./server/hosts/surface-of";
-import { fail } from "./server/http/api-response";
+import { handleAdminHost } from "./server/hosts/handlers/handle-admin";
+import { handleCmsHost } from "./server/hosts/handlers/handle-cms";
+import { handleWebHost } from "./server/hosts/handlers/handle-web";
+import { hasSession } from "./server/hosts/session-guard/has-session";
+import { hostOf } from "./server/hosts/routing/host-of";
+import { isForeignSessionApiRequest } from "./server/hosts/session-guard/is-foreign-session-api";
+import { surfaceOf } from "./server/hosts/routing/surface-of";
+import { fail } from "./server/http/fail-response";
 import { isPublicApi } from "./server/http/public-api-routes";
 
 function unauthorized(): NextResponse {

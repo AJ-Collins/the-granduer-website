@@ -1,8 +1,8 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { requireUser } from "@/server/auth/services/require-user";
-import { updatePackageController } from "@/server/catalog/controllers/update-package";
-import { setPackageStatusController } from "@/server/catalog/controllers/set-package-status";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
+import { updatePackageController } from "@/server/catalog/controllers/packages/update-package";
+import { setPackageStatusController } from "@/server/catalog/controllers/packages/set-package-status";
 
 async function guard(req: Request, permission: string) {
   const user = await requireUser(req);

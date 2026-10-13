@@ -1,5 +1,5 @@
-import { fail } from "../http/api-response";
-import type { SessionUser } from "../auth/services/session-claims";
+import { fail } from "../http/fail-response";
+import type { SessionUser } from "../auth/services/sessions/session-claims";
 import { hasPermission } from "./has-permission";
 
 /** Controller-level enforcement: 403 Response when the permission is missing. */

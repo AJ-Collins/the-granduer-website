@@ -1,6 +1,5 @@
-import { db } from "../../db/client";
+import { selectOutboxEntry } from "../persistence/queries/select-outbox-entry";
 
 export async function getOutboxEntry(id: string) {
-  const row = await db.notificationOutbox.findUnique({ where: { id } });
-  return row ? { ...row, status: row.status.toLowerCase() } : null;
+  return selectOutboxEntry(id);
 }

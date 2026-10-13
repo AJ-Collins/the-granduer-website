@@ -6,7 +6,8 @@ import {
   PACKAGE_OPTIONS,
   SERVICE_OPTIONS,
 } from "@/shared/lib/enquiry-content";
-import { Field, inputLight, sendEnquiry, type Status } from "./form-ui";
+import { Field, inputLight } from "./form-ui";
+import { sendEnquiry, type Status } from "./send-enquiry";
 
 const IMAGE =
   "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=1600&q=80";

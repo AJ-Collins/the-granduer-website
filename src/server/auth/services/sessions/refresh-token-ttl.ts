@@ -1,0 +1,1 @@
+export const REFRESH_TOKEN_TTL_SECONDS = 30 * 24 * 3600;

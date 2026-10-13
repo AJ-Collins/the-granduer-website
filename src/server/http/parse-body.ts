@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { fail } from "./api-response";
+import { fail } from "./fail-response";
 
 /** Exactly one validated reader pattern: parse JSON with Zod or return a 400 Response. */
 export async function parseBody<T>(

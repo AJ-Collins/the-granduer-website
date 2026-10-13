@@ -1,6 +1,6 @@
-import { clientIp } from "./client-ip";
-import { emailKey } from "./email-key";
-import { ipKey } from "./ip-key";
+import { clientIp } from "./keys/client-ip";
+import { emailKey } from "./keys/email-key";
+import { ipKey } from "./keys/ip-key";
 
 const MIN = 60_000;
 const HOUR = 3600_000;
@@ -33,10 +33,3 @@ export const LIMITERS = {
 } satisfies Record<string, Limiter>;
 
 export type LimiterName = keyof typeof LIMITERS;
-
-export function limiterContext(
-  req: Request,
-  extra?: Partial<LimiterContext>,
-): LimiterContext {
-  return { ip: clientIp(req), ...extra };
-}

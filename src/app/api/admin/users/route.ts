@@ -1,8 +1,8 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { listUsersController } from "@/server/admin/controllers/list-users";
-import { createUserController } from "@/server/admin/controllers/create-user";
-import { requireUser } from "@/server/auth/services/require-user";
+import { listUsersController } from "@/server/admin/controllers/users/list-users";
+import { createUserController } from "@/server/admin/controllers/users/create-user";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
 
 export async function GET(req: Request) {
   const user = await requireUser(req);

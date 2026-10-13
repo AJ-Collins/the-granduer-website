@@ -1,25 +1,9 @@
-import { db } from "../../db/client";
+import { selectOutboxEntries } from "../persistence/queries/select-outbox-entries";
 
-export type OutboxFilter = { status?: string; type?: string };
-
-export async function listOutboxEntries(page: number, pageSize: number, filter?: OutboxFilter) {
-  const where = {
-    ...(filter?.status && {
-      status: filter.status.toUpperCase() as "PENDING" | "SENDING" | "SENT" | "FAILED",
-    }),
-    ...(filter?.type && { type: filter.type }),
-  };
-  const [rows, total] = await Promise.all([
-    db.notificationOutbox.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-    }),
-    db.notificationOutbox.count({ where }),
-  ]);
-  return {
-    items: rows.map((r) => ({ ...r, status: r.status.toLowerCase() })),
-    total,
-  };
+export async function listOutboxEntries(
+  page: number,
+  pageSize: number,
+  filter?: { status?: string; type?: string },
+) {
+  return selectOutboxEntries(page, pageSize, filter);
 }

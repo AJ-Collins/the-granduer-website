@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { cookies, headers } from "next/headers";
-import { getSessionUserFromCookies } from "@/server/auth/services/get-session-user-from-cookies";
+import { getSessionUserFromCookies } from "@/server/auth/services/sessions/get-session-user-from-cookies";
 
 /** Studio shell: server-side gate — any cms.access account (login page exempt). */
 export default async function CmsLayout({ children }: { children: ReactNode }) {

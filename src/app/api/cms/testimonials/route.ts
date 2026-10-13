@@ -1,10 +1,8 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { requireUser } from "@/server/auth/services/require-user";
-import {
-  listTestimonialsController,
-  upsertTestimonialController,
-} from "@/server/cms/controllers/testimonials";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
+import { listTestimonialsController } from "@/server/cms/controllers/testimonials/list-testimonials";
+import { upsertTestimonialController } from "@/server/cms/controllers/testimonials/upsert-testimonial";
 
 export async function GET(req: Request) {
   const user = await requireUser(req);

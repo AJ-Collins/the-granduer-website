@@ -1,7 +1,7 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { listAuditLogsController } from "@/server/admin/controllers/list-audit-logs";
-import { requireUser } from "@/server/auth/services/require-user";
+import { listAuditLogsController } from "@/server/admin/controllers/audit/list-audit-logs";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
 
 export async function GET(req: Request) {
   const user = await requireUser(req);

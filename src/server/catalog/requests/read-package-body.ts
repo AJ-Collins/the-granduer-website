@@ -14,7 +14,4 @@ export const packageBodySchema = z.object({
   sortOrder: z.number().int().min(0).optional(),
 });
 
-export const packagePatchSchema = packageBodySchema.partial().omit({ slug: true });
-
 export type PackageInput = z.infer<typeof packageBodySchema>;
-export type PackagePatch = z.infer<typeof packagePatchSchema>;

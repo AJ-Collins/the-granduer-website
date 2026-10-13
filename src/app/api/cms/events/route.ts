@@ -1,10 +1,8 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { requireUser } from "@/server/auth/services/require-user";
-import {
-  createEventTypeController,
-  listEventTypesController,
-} from "@/server/catalog/controllers/event-types";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
+import { createEventTypeController } from "@/server/catalog/controllers/events/create-event-type";
+import { listEventTypesController } from "@/server/catalog/controllers/events/list-event-types";
 
 export async function GET(req: Request) {
   const user = await requireUser(req);

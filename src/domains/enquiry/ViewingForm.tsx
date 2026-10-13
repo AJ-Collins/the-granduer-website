@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { EVENT_TYPES } from "@/shared/lib/enquiry-content";
-import { Field, inputLight, sendEnquiry, type Status } from "./form-ui";
+import { Field, inputLight } from "./form-ui";
+import { sendEnquiry, type Status } from "./send-enquiry";
 
 const IMAGE =
   "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80";

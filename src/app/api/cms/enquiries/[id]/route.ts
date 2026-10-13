@@ -1,9 +1,9 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { requireUser } from "@/server/auth/services/require-user";
-import { getEnquiryController } from "@/server/enquiries/controllers/get-enquiry";
-import { assignEnquiryController } from "@/server/enquiries/controllers/assign-enquiry";
-import { updateEnquiryStatusController } from "@/server/enquiries/controllers/update-enquiry-status";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
+import { getEnquiryController } from "@/server/enquiries/controllers/managed/get-enquiry";
+import { assignEnquiryController } from "@/server/enquiries/controllers/managed/assign-enquiry";
+import { updateEnquiryStatusController } from "@/server/enquiries/controllers/managed/update-enquiry-status";
 
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const user = await requireUser(req);

@@ -1,6 +1,6 @@
 import { PERMISSIONS } from "@/server/access/permissions";
 import { requirePermission } from "@/server/access/require-permission";
-import { requireUser } from "@/server/auth/services/require-user";
+import { requireUser } from "@/server/auth/services/sessions/require-user";
 import { uploadFile } from "@/server/storage/controllers/upload-file";
 
 export async function POST(req: Request) {
