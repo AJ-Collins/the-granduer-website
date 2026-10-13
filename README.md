@@ -76,6 +76,17 @@ Named limiters in `src/server/rate-limit/limiters.ts` (Redis Lua when `REDIS_URL
 
 Port `ObjectStorage{put,get,delete,exists}` + local (disk, `/api/files/<key>`) / minio (S3) drivers via `STORAGE_DRIVER`. Bytes never touch Postgres — only `{key,url}` rows in `FileAsset`.
 
+## Notifications (outbox)
+
+Mail is never sent in the request path. Services enqueue a `NotificationOutbox` row in the
+same transaction as the domain write; an in-process poller (`src/instrumentation.ts`,
+every 10s, `SKIP LOCKED` — safe with N instances) dispatches due rows via `sendMail`
+(logged, not sent, when SMTP is unset).
+
+- Max **3 attempts**, exponential backoff (2/4/8 min), then `FAILED` (dead-letter).
+- Admin controls: `GET /api/admin/outbox` (filters `status`, `type`), `GET /:id`,
+  `PATCH /:id {"action":"retry"}` (FAILED-only, audited as `admin.outbox-retried`).
+
 ## Tests
 
 ```bash

@@ -1,5 +1,6 @@
 import { db } from "../../db/client";
-import { sendMail } from "../../email/services/send-mail";
+import { enqueueNotification } from "../../notifications/services/enqueue-notification";
+import { enquiryAckMail } from "../../notifications/services/enquiry-ack-mail";
 import type { EnquiryBody } from "../requests/read-enquiry-body";
 
 export class UnknownCatalogRefError extends Error {
@@ -29,22 +30,27 @@ export async function submitEnquiry(input: EnquiryBody) {
     if (!pkg) throw new UnknownCatalogRefError("package");
     packageId = pkg.id;
   }
-  const row = await db.enquiry.create({
-    data: {
-      kind: input.kind.toUpperCase() as "VIEWING" | "PROPOSAL",
-      name: input.name,
-      email: input.email,
-      phone: input.phone,
-      message: input.message ?? null,
-      eventDate: input.eventDate ? new Date(input.eventDate) : null,
-      eventTypeId,
-      packageId,
-    },
-  });
-  await sendMail({
-    to: row.email,
-    subject: "We received your D'Grandeur enquiry",
-    text: `Hi ${row.name}, thanks for your ${input.kind} request. Our team will respond shortly.`,
+  const mail = enquiryAckMail(input.name, input.kind);
+  const row = await db.$transaction(async (tx) => {
+    const created = await tx.enquiry.create({
+      data: {
+        kind: input.kind.toUpperCase() as "VIEWING" | "PROPOSAL",
+        name: input.name,
+        email: input.email,
+        phone: input.phone,
+        message: input.message ?? null,
+        eventDate: input.eventDate ? new Date(input.eventDate) : null,
+        eventTypeId,
+        packageId,
+      },
+    });
+    await enqueueNotification(tx, {
+      type: "enquiry.ack",
+      to: input.email,
+      subject: mail.subject,
+      text: mail.text,
+    });
+    return created;
   });
   return toEnquiry(row);
 }

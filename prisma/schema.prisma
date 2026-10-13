@@ -229,3 +229,28 @@ model FileAsset {
   sizeBytes Int
   createdAt DateTime @default(now())
 }
+
+enum OutboxStatus {
+  PENDING
+  SENDING
+  SENT
+  FAILED
+}
+
+model NotificationOutbox {
+  id            String       @id @default(cuid())
+  type          String
+  to            String
+  subject       String
+  text          String
+  html          String?
+  status        OutboxStatus @default(PENDING)
+  attempts      Int          @default(0)
+  nextAttemptAt DateTime     @default(now())
+  lastError     String?
+  sentAt        DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([status, nextAttemptAt])
+}
