@@ -1,63 +1,47 @@
-# Backend architecture — context-grouped modular monolith
+# Backend architecture — single Next.js app, colocated server domains
 
-One backend deployment (`apps/api`), organized by **application/business context**
-first, then feature, then responsibility.
-
-```
-apps/api/src/
-├── core/            # HTTP, errors, config, logging, middleware (no business logic)
-├── contexts/
-│   ├── public/      # Unauthenticated visitor workflows (reads published data, submits enquiries)
-│   ├── cms/         # Content publishing workflows (protected)
-│   ├── admin/       # Platform administration workflows (protected)
-│   └── identity/    # Shared login/sessions/passwords — the ONLY session system
-├── shared/          # App-level services: health, pagination, notifications, media
-└── bootstrap/       # Composition root: dependencies.ts + app wiring
-```
-
-Inside each feature (`contexts/<ctx>/<feature>/`):
+Supersedes the old monorepo (`apps/*` + `packages/*`) layout. One deployment,
+file-system routing, no app object to build:
 
 ```
-domain/          # entities, value-objects, rules, errors, repository INTERFACES (no I/O)
-application/     # use-cases (one business op), dto, ports (outbound interfaces)
-infrastructure/  # repository implementations (Prisma), mappers
-presentation/    # routes, controllers, schemas (HTTP only)
-<feature>.module.ts  # wires routes
-index.ts         # PUBLIC boundary — other features import only from here
+request → src/proxy.ts (subdomain gateway + session guard, edge)
+        → src/app/api/<...>/route.ts (one-line delegate)
+        → src/server/<domain>/controllers/<action>.ts (rate-limit → service → envelope)
+        → src/server/<domain>/services/*.ts (Prisma / storage / mail)
 ```
 
-## Rules (enforced by review; lint rules to follow)
+## Rules
 
-1. Import across features only via `index.ts`, never deep into another feature.
-2. `domain/` + `application/` never import HTTP frameworks, Prisma, MinIO, Next.js.
-3. Controllers validate + call one use-case + map to HTTP. No business rules, no SQL.
-4. Use-cases never touch `c.json`/Prisma directly — only via repository/port interfaces.
-5. `packages/*` never import from `apps/api`.
-6. `admin/`, `cms/`, `public/` never implement their own auth/sessions/passwords —
-   they reuse `identity/` + `packages/auth`.
-7. Shared catalog/content logic lives in ONE domain module; `cms/` publishes,
-   `public/` reads. No duplicated repositories.
+1. `src/app/api/**/route.ts` holds NO logic — parse/guard lives in controllers + hosts.
+2. One file = one function/type in `src/server/**`.
+3. `services/` is HTTP-free (no `Request`/`Response`, no cookies, no `next/headers`).
+4. Controllers return the `{ success, data | error }` envelope, never throw domain errors
+   unhandled — typed errors (`*.status`) map to `fail(...)`.
+5. No cross-domain imports of internals: controllers compose services; shared layers
+   (`http`, `hosts`, `access`, `rate-limit`, `db`) hold the cross-cutting code.
+6. Bytes never touch Postgres (storage port + drivers); sessions are HttpOnly cookies;
+   auth surfaces stay per-host (`/login` on each) because localhost cookies can't cross
+   subdomains.
 
 ## What lives where
 
 | Concern | Location |
 |---|---|
-| Routes, controllers, middleware | `apps/api` |
-| Use-cases, domain rules | `apps/api/src/contexts/*` |
-| Prisma schema, migrations, client | `packages/db` |
-| Password/session primitives | `packages/auth` |
-| Permission definitions/helpers | `packages/authorization` |
-| MinIO adapter | `packages/storage` |
-| Redis adapter | `packages/cache` |
-| Email provider | `packages/email` + queue in `packages/queues`, run in `apps/worker` |
-| API DTOs shared frontend↔backend | `packages/contracts` |
-| Reusable validation primitives | `packages/validators` (business rules stay in domains) |
+| Host → surface dispatch, API session guard | `src/proxy.ts` + `src/server/hosts/` |
+| Thin route delegates | `src/app/api/` |
+| Authn/z, users, catalog, enquiries, cms, storage, admin | `src/server/<domain>/{controllers,requests,services}/` |
+| Envelope, pagination, body parsing, public-route table | `src/server/http/` |
+| Permission table + enforcement | `src/server/access/` |
+| Named rate limiters + stores | `src/server/rate-limit/` |
+| Prisma schema/migrations/seed + singleton client | `prisma/` + `src/server/db/client.ts` |
+| Frontend domain UI | `src/domains/` |
+| Design system, DTOs, Zod schemas | `src/shared/` |
+| Tests (mirror `src`, none beside source) | `tests/unit/` |
 
-## Rollout order
+## Rollout from here
 
-1. ✅ Foundation (this change): HTTP server, env, errors, request-id, health, module wiring.
-2. Shared infra: real Prisma models, Redis/session, MinIO buckets, SMTP.
-3. Identity: login/sessions/password-reset, real `authenticate` + permission enforcement.
-4. Catalog/content reads (public) + publishing (cms).
-5. Enquiries persistence (Prisma swap) + notifications via worker.
-6. Thin the Next.js `app/api/*` stubs into proxies or delete in favor of `apps/api`.
+1. ✅ Flatten: single app, cookie sessions, catalog + enquiries + users + audit + uploads.
+2. CMS studio pages: wire the stub pages to the CMS APIs (content, packages, events, faqs, testimonials, enquiries).
+3. Admin console pages: wire dashboard stats, users, roles to the admin APIs.
+4. Storefront data: replace static `*-content.ts` reads with the public APIs where live data matters (packages, events, FAQs, testimonials, gallery).
+5. E2E: Playwright spec for login → publish → public-read.
