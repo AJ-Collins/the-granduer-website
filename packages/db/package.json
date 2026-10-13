@@ -10,13 +10,17 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "db:generate": "prisma generate",
-    "postinstall": "prisma skills sync || exit 0"
+    "postinstall": "prisma generate || exit 0"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
-    "prisma": "8.0.0-rc.17"
+    "pg": "^8.23.1"
   },
   "devDependencies": {
+    "@dgrandeur/auth": "workspace:*",
+    "@dgrandeur/authorization": "workspace:*",
+    "prisma": "^7.10.0",
     "tsx": "^4.23.15"
   }
 }

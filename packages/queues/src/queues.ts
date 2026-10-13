@@ -1,5 +1,5 @@
 import { Queue, type JobsOptions } from "bullmq";
-import { getRedisConnection } from "./connection";
+import { getRedisConnection } from "./connection.js";
 
 const queues = new Map<string, Queue<any>>();
 

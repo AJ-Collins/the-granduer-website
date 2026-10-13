@@ -11,6 +11,7 @@ out/
 
 # Prisma
 packages/db/prisma/migrations/*.sql.bak
+packages/db/src/generated/
 
 # Env files
 .env

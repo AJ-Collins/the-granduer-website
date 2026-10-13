@@ -1,5 +1,5 @@
 import { Worker, type Processor, type WorkerOptions } from "bullmq";
-import { getRedisConnection } from "./connection";
+import { getRedisConnection } from "./connection.js";
 
 /** Start a worker for the given queue. Runs in `apps/worker`. */
 export function createWorker<DataType = unknown>(

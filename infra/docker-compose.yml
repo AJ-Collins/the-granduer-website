@@ -36,6 +36,20 @@ services:
     depends_on:
       - redis
 
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgresql://dgrandeur:dgrandeur@postgres:5432/dgrandeur
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+      - redis
+
 volumes:
   postgres-data:
   minio-data:

@@ -1,4 +1,4 @@
-import { ValueObject } from "./value-object";
+import { ValueObject } from "./value-object.js";
 
 /**
  * Global timestamp value object. Use it anywhere a point in time is

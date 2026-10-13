@@ -1,4 +1,4 @@
-import { minio } from "./minio";
+import { minio } from "./minio.js";
 
 const BUCKETS = ["uploads"];
 

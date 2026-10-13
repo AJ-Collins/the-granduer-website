@@ -1,3 +1,3 @@
-export * from "./minio";
-export * from "./presigned";
-export * from "./buckets";
+export * from "./minio.js";
+export * from "./presigned.js";
+export * from "./buckets.js";

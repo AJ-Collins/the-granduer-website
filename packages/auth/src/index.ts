@@ -1,4 +1,3 @@
-export * from "./session";
-export * from "./password";
-export * from "./login";
-export * from "./logout";
+export * from "./session.js";
+export * from "./password.js";
+export * from "./tokens.js";

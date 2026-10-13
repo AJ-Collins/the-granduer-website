@@ -1,4 +1,4 @@
-import type { Permission } from "./permissions";
+import type { Permission } from "./permissions.js";
 
 export function hasPermission(granted: Permission[], required: Permission): boolean {
   return granted.includes(required);

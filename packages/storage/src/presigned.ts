@@ -1,4 +1,4 @@
-import { minio } from "./minio";
+import { minio } from "./minio.js";
 
 export async function presignedPutUrl(bucket: string, objectName: string): Promise<string> {
   return minio.presignedPutObject(bucket, objectName);

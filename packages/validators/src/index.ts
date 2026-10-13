@@ -1,3 +1,3 @@
-export * from "./user";
-export * from "./content";
-export * from "./enquiry";
+export * from "./user.js";
+export * from "./content.js";
+export * from "./enquiry.js";
