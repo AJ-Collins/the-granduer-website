@@ -10,7 +10,8 @@ build/
 out/
 
 # Prisma
-packages/db/prisma/migrations/*.sql.bak
+prisma/generated/
+prisma/migrations/*.sql.bak
 
 # Env files
 .env
@@ -36,5 +37,6 @@ Thumbs.db
 # Turbo
 .turbo/
 
-# Docker
-infra/data/
+
+# Uploads (local storage driver)
+.data/

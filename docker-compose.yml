@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dgrandeur-pg
+    environment:
+      POSTGRES_USER: dgrandeur
+      POSTGRES_PASSWORD: dgrandeur
+      POSTGRES_DB: dgrandeur
+    ports:
+      - "5433:5432"
+    volumes:
+      - dgrandeur-pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: dgrandeur-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - dgrandeur-redisdata:/data
+
+volumes:
+  dgrandeur-pgdata:
+  dgrandeur-redisdata:
