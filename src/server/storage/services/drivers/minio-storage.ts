@@ -1,7 +1,6 @@
 import { Client } from "minio";
-import { buildObjectKey } from "../keys/build-object-key";
-import { minioConfig } from "./minio-config";
 import { streamToBytes } from "../stream-to-bytes";
+import type { MinioConfig } from "./minio-config";
 import type { ObjectStorage, PutOptions, StoredObject } from "./storage-port";
 
 export class MinioStorage implements ObjectStorage {
@@ -10,8 +9,7 @@ export class MinioStorage implements ObjectStorage {
   private bucket: string;
   private ready: Promise<void>;
 
-  constructor() {
-    const config = minioConfig();
+  constructor(config: MinioConfig) {
     this.client = new Client({
       endPoint: config.endPoint,
       port: config.port,
@@ -42,11 +40,10 @@ export class MinioStorage implements ObjectStorage {
 
   async put(data: Uint8Array, options: PutOptions): Promise<StoredObject> {
     await this.ready;
-    const key = buildObjectKey(options.prefix ?? "uploads", options.mimeType);
-    await this.client.putObject(this.bucket, key, Buffer.from(data), data.length, {
+    await this.client.putObject(this.bucket, options.key, Buffer.from(data), data.length, {
       "Content-Type": options.mimeType,
     });
-    return { key, sizeBytes: data.length, mimeType: options.mimeType };
+    return { key: options.key, sizeBytes: data.length, mimeType: options.mimeType };
   }
 
   async get(key: string) {

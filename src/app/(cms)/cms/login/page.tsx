@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { CmsLoginForm } from "@/domains/cms/auth/cms-login-form";
+import { CmsLoginForm } from "@/domains/cms/auth";
 
 export default function CmsLoginPage() {
   return (

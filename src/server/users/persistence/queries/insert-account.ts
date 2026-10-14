@@ -1,5 +1,7 @@
 import { hashPassword } from "../../../auth/services/passwords/hash-password";
-import { toListedAccount, WITH_ROLES, type AccountRow } from "../rows";
+import type { AccountRow } from "../rows";
+import { WITH_ROLES } from "../fragments";
+import { toListedAccount } from "../mappers/to-listed-account";
 import { resolveRoleIds } from "./resolve-role-ids";
 
 type AccountCreator = {

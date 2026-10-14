@@ -1,6 +1,6 @@
 import { ok } from "../../../http/ok-response";
-import { selectRoles } from "../../../users/persistence/queries/select-roles";
+import { listRoles } from "../../../users/services/list-roles";
 
 export async function listRolesController(): Promise<Response> {
-  return ok(await selectRoles());
+  return ok(await listRoles());
 }

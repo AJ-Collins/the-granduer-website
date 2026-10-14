@@ -3,7 +3,7 @@ import { ok } from "../../../http/ok-response";
 import { parseBody } from "../../../http/parse-body";
 import type { SessionUser } from "../../../auth/services/sessions/session-claims";
 import { setUserRoles } from "../../../users/services/set-user-roles";
-import { UnknownRolesError } from "../../../users/services/create-user";
+import { UnknownRolesError } from "../../../users/persistence/errors/unknown-roles-error";
 import { patchUserRolesSchema } from "../../requests/read-patch-user-roles-body";
 
 export async function setUserRolesController(

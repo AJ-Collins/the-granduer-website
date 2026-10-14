@@ -24,16 +24,7 @@ const TILES = [
   },
 ];
 
-/**
- * Full-screen cinematic hero. Looping muted video fills every screen size
- * (object-cover), photo poster while loading or if motion is reduced,
- * a light navy veil, centred logo lockup, brand-styled tagline, two CTAs,
- * scroll button.
- * md and up: three tall photo tiles sit centred behind the content, softly
- * visible at rest; hovering one expands it past the others.
- * Below md: the tiles are not rendered, so small screens show the clean video.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Full-screen cinematic hero. */
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);

@@ -1,11 +1,6 @@
 import { MOMENTS } from "@/shared/lib/home-content";
 
-/**
- * The D'Grandeur experience — six moments, navy.
- * lg+: heading pinned on the left, six tall photos in two columns on the right.
- * Below lg: heading on top, photos in 1 column (2 from sm).
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * The D'Grandeur experience — six moments, navy. */
 export function ExperienceMoments() {
   return (
     <section

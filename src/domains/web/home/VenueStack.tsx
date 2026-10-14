@@ -1,11 +1,6 @@
 import { STACK_PANELS } from "@/shared/lib/home-content";
 
-/**
- * "More than a venue" — three layers, deep navy.
- * Each layer is a full-screen photo with the text on a soft navy fade.
- * lg+: text alternates left / right / left. Below lg: text at the bottom.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * "More than a venue" — three layers, deep navy. */
 export function VenueStack() {
   return (
     <section

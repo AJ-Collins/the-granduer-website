@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { published } from "../rows";
+import { published } from "../mappers/to-published";
 
 const ORDER = [{ sortOrder: "asc" as const }, { createdAt: "asc" as const }];
 

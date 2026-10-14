@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { cookies, headers } from "next/headers";
-import { CmsShell } from "@/domains/cms/cms-shell";
+import { CmsShell } from "@/domains/cms/shell";
 import { getSessionUserFromCookies } from "@/server/auth/services/sessions/get-session-user-from-cookies";
 
 /** Studio shell: server-side gate — any cms.access account (login page exempt). */
@@ -13,10 +13,6 @@ export default async function CmsLayout({ children }: { children: ReactNode }) {
     if (!user || !user.permissions.includes("cms.access")) {
       redirect("/login");
     }
-  }
-
-  if (surfacePath === "/login") {
-    return <>{children}</>;
   }
 
   const profileUser = user

@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { published } from "../rows";
+import { published } from "../mappers/to-published";
 
 export async function selectContentBlock(slug: string, publishedOnly: boolean) {
   const row = await db.contentPage.findUnique({ where: { slug } });

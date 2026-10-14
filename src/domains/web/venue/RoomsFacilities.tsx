@@ -29,12 +29,7 @@ const ROOMS = [
   },
 ];
 
-/**
- * Rooms and facilities, full screen.
- * Short heading over a staggered 2x2 photo mosaic (7/5 then 5/7).
- * lg+: two rows filling the screen. Below lg: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Rooms and facilities, full screen. */
 export function RoomsFacilities() {
   return (
     <section

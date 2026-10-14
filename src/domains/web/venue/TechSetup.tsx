@@ -25,12 +25,7 @@ const ROWS = [
   },
 ];
 
-/**
- * Tech and setup, full screen.
- * lg+: huge photo fills the left half edge to edge; heading and three
- * square-photo rows sit on the right. Below lg: stacked, photo first.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Tech and setup, full screen. */
 export function TechSetup() {
   return (
     <section

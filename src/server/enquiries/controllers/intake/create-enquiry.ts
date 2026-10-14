@@ -9,7 +9,8 @@ import { failIdempotencyKey } from "../../../idempotency/services/fail-idempoten
 import { reserveIdempotencyKey } from "../../../idempotency/services/reserve-idempotency-key";
 import { enforceRateLimit } from "../../../rate-limit/enforce-rate-limit";
 import { enquiryBodySchema } from "../../requests/read-enquiry-body";
-import { submitEnquiry, UnknownCatalogRefError } from "../../services/intake/submit-enquiry";
+import { submitEnquiry } from "../../services/intake/submit-enquiry";
+import { UnknownCatalogRefError } from "../../persistence/errors/unknown-catalog-ref-error";
 
 const SCOPE = "enquiry:create";
 const ACTOR = "public";

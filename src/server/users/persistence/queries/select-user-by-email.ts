@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { WITH_ROLES } from "../rows";
+import { WITH_ROLES } from "../fragments";
 
 export async function selectUserByEmail(email: string) {
   return db.account.findUnique({

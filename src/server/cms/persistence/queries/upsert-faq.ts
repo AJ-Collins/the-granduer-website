@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { published } from "../rows";
+import { published } from "../mappers/to-published";
 import type { FaqBody } from "../../requests/read-faq-body";
 
 export async function upsertFaqRow(id: string | null, input: FaqBody) {

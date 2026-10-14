@@ -1,4 +1,5 @@
-import { toEnquiryRecord, type StoredEnquiryRow } from "../rows";
+import type { StoredEnquiryRow } from "../rows";
+import { toEnquiryRecord } from "../mappers/to-enquiry-record";
 
 type AssignmentWriter = {
   enquiry: {

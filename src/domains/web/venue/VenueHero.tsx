@@ -3,11 +3,7 @@ import { VENUE_HERO } from "@/shared/lib/venue-content";
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Venue hero, full screen.
- * One huge photo, navy veil, type anchored bottom-left, square scroll button.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Venue hero, full screen. */
 export function VenueHero() {
   return (
     <section className="relative flex min-h-svh w-full flex-col justify-end overflow-hidden bg-navy-deep px-[clamp(1.5rem,4vw,5rem)] pb-32 pt-32 text-ivory md:pb-20">

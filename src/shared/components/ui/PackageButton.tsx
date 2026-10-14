@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
 
-export function Button({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
+export function PackageButton({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return <button {...props}>{children}</button>;
 }

@@ -1,4 +1,5 @@
 import { ok } from "../../../http/ok-response";
+import { readCookie } from "../../requests/read-cookie";
 import { clearSessionCookies } from "../../services/sessions/clear-session-cookies";
 import { getSessionUser } from "../../services/sessions/get-session-user";
 import { revokeSession } from "../../services/sessions/revoke-session";
@@ -10,14 +11,4 @@ export async function logout(req: Request): Promise<Response> {
   await clearSessionCookies();
   void user;
   return ok({ loggedOut: true });
-}
-
-function readCookie(req: Request, name: string): string | null {
-  const header = req.headers.get("cookie");
-  if (!header) return null;
-  for (const part of header.split(";")) {
-    const [key, ...rest] = part.trim().split("=");
-    if (key === name) return decodeURIComponent(rest.join("="));
-  }
-  return null;
 }

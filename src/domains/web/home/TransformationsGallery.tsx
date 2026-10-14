@@ -47,11 +47,7 @@ function getSpans(count: number): number[] {
   return spans;
 }
 
-/**
- * "One space, many transformations" — edge-to-edge photo wall, ivory.
- * Mobile: 2-column grid. lg+: editorial 12-column rows, each 55svh tall.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * "One space, many transformations" — edge-to-edge photo wall, ivory. */
 export function TransformationsGallery() {
   const spans = getSpans(PHOTOS.length);
 

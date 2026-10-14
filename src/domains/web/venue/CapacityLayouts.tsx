@@ -38,12 +38,7 @@ const LAYOUTS: Layout[] = [
   },
 ];
 
-/**
- * Capacity and layouts, full screen.
- * Short heading, then four tall layout photos with the name set on the image.
- * lg: four across. sm: two by two. Below sm: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Capacity and layouts, full screen. */
 export function CapacityLayouts() {
   return (
     <section

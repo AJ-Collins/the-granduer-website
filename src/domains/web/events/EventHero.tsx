@@ -1,11 +1,7 @@
 import { eventImage } from "./images";
 
 const HERO_IMAGE = "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=75"
-/**
- * Event landing hero, full screen on every device.
- * Photo, navy veil, mixed-type title, square scroll button.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Event landing hero, full screen on every device. */
 export function EventHero({
   title,
   image,

@@ -28,12 +28,7 @@ const DOORS = [
   },
 ];
 
-/**
- * Contact page opener, full screen.
- * Three full-height photo doors with a heading over the top.
- * lg+: side by side, full screen height. Below lg: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Contact page opener, full screen. */
 export function ConversionDoors() {
   return (
     <section

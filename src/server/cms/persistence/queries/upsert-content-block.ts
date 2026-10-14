@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { published } from "../rows";
+import { published } from "../mappers/to-published";
 import type { ContentBody } from "../../requests/read-content-body";
 
 export async function upsertContentBlockRow(input: ContentBody) {

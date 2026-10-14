@@ -9,7 +9,7 @@ One Next.js deployment serves 3 surfaces + 1 shared API, picked by hostname at t
 |---|---|---|
 | `localhost:3000` | web | Storefront |
 | `admin.localhost:3000` | admin | Console (`/dashboard`, `/users`, `/roles`) + `/login` |
-| `cms.localhost:3000` | cms | Studio (`/dashboard`, `/content`, `/packages`, `/events`, `/enquiries`, …) + `/login` |
+| `cms.localhost:3000` | cms | Studio (`/dashboard`, `/content`, `/packages`, `/events`, …) + `/login` |
 
 > Add `127.0.0.1 admin.localhost cms.localhost` to `/etc/hosts` for local subdomain dev.
 > In production set `APEX_DOMAIN` (plus `ADMIN_HOST` / `CMS_HOST` / `WEB_HOSTS` to override).
@@ -35,7 +35,7 @@ src/
 ├── app/
 │   ├── (web)/                 # storefront pages
 │   ├── (admin)/admin/         # console: dashboard, users, roles + login
-│   ├── (cms)/cms/             # studio: content, catalog, enquiries + login
+│   ├── (cms)/cms/             # studio: content, catalog + login
 │   └── api/.../route.ts       # thin delegates — NO logic, one controller call each
 ├── server/<domain>/           # backend, colocated per domain
 │   ├── controllers/<action>.ts  # one exported action: rate-limit → service → envelope

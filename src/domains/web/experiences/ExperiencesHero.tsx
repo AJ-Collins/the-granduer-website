@@ -6,12 +6,7 @@ import {
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Experiences hero, full screen on every device.
- * Photo, navy veil, mixed-type headline, and a three-layer preview row.
- * sm+: preview row links to each layer. Below sm: square scroll button.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Experiences hero, full screen on every device. */
 export function ExperiencesHero() {
   return (
     <section className="relative flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-navy-deep px-[clamp(1.25rem,4vw,5rem)] pb-36 pt-28 text-center text-ivory sm:pb-32">

@@ -1,16 +1,7 @@
-import { eventImage } from "./images";
+import { eventImage } from "./lib/event-images";
+import { labelOf, type Service } from "./event-service";
 
-type Service = string | { title?: string; name?: string; label?: string };
-
-const labelOf = (s: Service) =>
-  typeof s === "string" ? s : (s.title ?? s.name ?? s.label ?? "");
-
-/**
- * Services for an event type, full screen.
- * One photo tile per service with a number and a name.
- * lg: 3 across. sm: 2 across. Below sm: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** Services for an event type. */
 export function EventServices({ services }: { services: Service[] }) {
   return (
     <section className="flex min-h-svh w-full flex-col justify-center overflow-hidden bg-navy px-[clamp(1.5rem,4vw,5rem)] py-20 text-ivory md:py-28">

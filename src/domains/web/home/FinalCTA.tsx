@@ -22,12 +22,7 @@ const DOORS = [
   },
 ];
 
-/**
- * Final conversion — full-screen photo with the text on top.
- * Big centred heading, three frosted doors, contact row.
- * lg+: doors side by side. Below lg: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Final conversion — full-screen photo with the text on top. */
 export function FinalCTA() {
   return (
     <section

@@ -25,12 +25,7 @@ const CHAPTERS = [
 const CLOSING_IMAGE =
   "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Venue overview told as a story: Arrive, Gather, Celebrate, Remember.
- * Each chapter is full screen. lg+: image and text split 50/50, alternating
- * sides. Below lg: image first, text below.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Venue overview told as a story: Arrive, Gather, Celebrate, Remember. */
 export function VenueOverview() {
   return (
     <section id="overview" className="w-full overflow-hidden">

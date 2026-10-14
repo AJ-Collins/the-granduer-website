@@ -1,5 +1,6 @@
 import type { Prisma } from "../../../../../prisma/generated/client";
-import { toEnquiryRecord, type NewEnquiry, type StoredEnquiryRow } from "../rows";
+import type { NewEnquiry, StoredEnquiryRow } from "../rows";
+import { toEnquiryRecord } from "../mappers/to-enquiry-record";
 
 type EnquiryCreator = {
   enquiry: {

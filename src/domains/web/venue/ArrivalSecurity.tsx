@@ -25,12 +25,7 @@ const STEPS = [
   },
 ];
 
-/**
- * Arrival and security, full screen.
- * Photo background, big centred heading, three image cards at the bottom.
- * lg+: cards in a row. Below lg: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Arrival and security, full screen. */
 export function ArrivalSecurity() {
   return (
     <section

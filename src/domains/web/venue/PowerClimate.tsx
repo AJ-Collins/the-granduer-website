@@ -15,13 +15,7 @@ const PANELS = [
   },
 ];
 
-/**
- * Climate and power, full screen.
- * Two big photos, one for air conditioning, one for backup power.
- * lg+: side by side, each full screen height. Below lg: stacked, each
- * most of a screen tall.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Climate and power, full screen. */
 export function PowerClimate() {
   return (
     <section

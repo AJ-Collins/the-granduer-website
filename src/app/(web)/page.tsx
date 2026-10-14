@@ -1,4 +1,4 @@
-import { Navbar } from "@/domains/web/home/Navbar";
+import { Navbar } from "@/domains/web/shell/Navbar";
 import { Hero } from "@/domains/web/home/Hero";
 import { Intro } from "@/domains/web/home/Intro";
 import { VenueFacts } from "@/domains/web/home/VenueFacts";
@@ -9,7 +9,7 @@ import { TransformationsGallery } from "@/domains/web/home/TransformationsGaller
 import { ExperienceMoments } from "@/domains/web/home/ExperienceMoments";
 import { Testimonials } from "@/domains/web/home/Testimonials";
 import { FinalCTA } from "@/domains/web/home/FinalCTA";
-import { SiteFooter } from "@/domains/web/home/SiteFooter";
+import { SiteFooter } from "@/domains/web/shell/SiteFooter";
 
 export default function HomePage() {
   return (

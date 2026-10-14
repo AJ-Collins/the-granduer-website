@@ -2,9 +2,9 @@ import { db } from "../../../db/client";
 import { insertAuditEntry } from "../../../audit/persistence/queries/insert-audit-entry";
 import { replaceAccountRoleLinks } from "../queries/replace-account-role-links";
 import { resolveRoleIds } from "../queries/resolve-role-ids";
-import { toListedAccount } from "../rows";
+import { toListedAccount } from "../mappers/to-listed-account";
 
-/** Role replacement + audit — one transaction (resolve, delete, insert, audit). */
+/** Role replacement + audit — one transaction. */
 export async function replaceUserRolesWithAudit(id: string, roleKeys: string[], actorId: string) {
   return db.$transaction(async (tx) => {
     const roles = await resolveRoleIds(tx, roleKeys);

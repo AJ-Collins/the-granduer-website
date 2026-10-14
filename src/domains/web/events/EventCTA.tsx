@@ -1,10 +1,6 @@
 import { eventImage } from "./images";
 
-/**
- * Event call to action, full screen.
- * Photo, navy veil, huge CTA line, two buttons, contact row.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Event call to action, full screen. */
 export function EventCTA({ cta }: { cta: string }) {
   return (
     <section className="relative flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-navy-deep px-[clamp(1.5rem,4vw,5rem)] pb-32 pt-24 text-center text-ivory md:pb-24">

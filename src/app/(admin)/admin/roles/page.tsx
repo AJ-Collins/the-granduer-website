@@ -1,6 +1,6 @@
 import { PageHeader, MgmtButton, EmptyState } from "@/shared/components/management";
 import { IconShield } from "@/shared/components/management/icons";
-import { RolesTable } from "@/domains/admin/roles-table";
+import { RolesTable } from "@/domains/admin/roles";
 import { listRoles } from "@/server/users/services/list-roles";
 
 export default async function RolesPage() {
@@ -17,7 +17,7 @@ export default async function RolesPage() {
         title="Roles"
         description="Define roles and their associated permissions to control access."
         breadcrumbs={[
-          { label: "Admin", href: "/admin/dashboard" },
+          { label: "Admin", href: "/dashboard" },
           { label: "Roles" },
         ]}
       />

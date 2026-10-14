@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { GALLERY_GROUPS } from "@/shared/lib/gallery-content";
-
-const u = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=75`;
+import { galleryImage as u } from "@/shared/lib/gallery-image";
 
 /** One placeholder photo per group, in order. */
 const IMAGES = [
@@ -22,12 +20,7 @@ const IMAGES = [
 
 const PAGE_SIZE = 4;
 
-/**
- * Shot list with numbered pagination, full screen.
- * lg+: heading and big page counter left, 2x2 photo cards and pager right.
- * Below lg: stacked.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Shot list with numbered pagination, full screen. */
 export function AssetGroups() {
   const [page, setPage] = useState(1);
   const pages = Math.ceil(GALLERY_GROUPS.length / PAGE_SIZE);

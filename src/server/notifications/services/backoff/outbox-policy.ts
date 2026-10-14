@@ -1,1 +1,1 @@
-export const OUTBOX_MAX_ATTEMPTS = 3;
+export * from "../../persistence/policy/outbox-policy";

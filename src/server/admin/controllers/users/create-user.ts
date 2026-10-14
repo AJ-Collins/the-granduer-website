@@ -1,7 +1,8 @@
 import { fail } from "../../../http/fail-response";
 import { ok } from "../../../http/ok-response";
 import { parseBody } from "../../../http/parse-body";
-import { createUser, UnknownRolesError } from "../../../users/services/create-user";
+import { createUser } from "../../../users/services/create-user";
+import { UnknownRolesError } from "../../../users/persistence/errors/unknown-roles-error";
 import { createUserBodySchema } from "../../requests/read-create-user-body";
 import type { SessionUser } from "../../../auth/services/sessions/session-claims";
 

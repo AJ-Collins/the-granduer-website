@@ -1,6 +1,6 @@
 import { EVENTS } from "@/shared/lib/events-content";
-import { Navbar } from "@/domains/web/home/Navbar";
-import { SiteFooter } from "@/domains/web/home/SiteFooter";
+import { Navbar } from "@/domains/web/shell/Navbar";
+import { SiteFooter } from "@/domains/web/shell/SiteFooter";
 import { eventImage } from "@/domains/web/events/images";
 
 const HERO_IMAGE =

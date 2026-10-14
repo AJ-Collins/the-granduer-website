@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { published } from "../rows";
+import { published } from "../mappers/to-published";
 import type { TestimonialBody } from "../../requests/read-testimonial-body";
 
 export async function upsertTestimonialRow(id: string | null, input: TestimonialBody) {

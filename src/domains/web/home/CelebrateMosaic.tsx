@@ -37,12 +37,7 @@ function getSpans(count: number): number[] {
   return spans;
 }
 
-/**
- * "Celebrate your way" — full-width image grid.
- * Mobile: one big photo per row. sm: two per row. lg+: editorial 12-col grid
- * with tall rows. Titles sit on a soft navy fade inside each photo.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * "Celebrate your way" — full-width image grid. */
 export function CelebrateMosaic() {
   const spans = getSpans(MOSAIC_TILES.length);
 

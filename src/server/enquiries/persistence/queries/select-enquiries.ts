@@ -1,6 +1,6 @@
 import type { Prisma } from "../../../../../prisma/generated/client";
 import { db } from "../../../db/client";
-import { toEnquiryRecord } from "../rows";
+import { toEnquiryRecord } from "../mappers/to-enquiry-record";
 
 export async function selectEnquiries(page: number, pageSize: number, status?: string) {
   const where: Prisma.EnquiryWhereInput = status

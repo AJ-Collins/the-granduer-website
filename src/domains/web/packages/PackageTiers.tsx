@@ -27,12 +27,7 @@ const STEPS = [
   "xl:h-[83svh]",
 ];
 
-/**
- * Package tiers as a staircase, full screen.
- * xl+: four photo panels rising left to right, bottom-aligned.
- * sm to xl: two by two. Below sm: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Package tiers as a staircase, full screen. */
 export function PackageTiers() {
   return (
     <section

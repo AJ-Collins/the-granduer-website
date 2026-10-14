@@ -1,11 +1,7 @@
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Closing CTA, full screen. Request Proposal, never "from" pricing.
- * Photo, navy veil, big centred heading, two buttons.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Closing CTA, full screen. */
 export function PackagesCTA() {
   return (
     <section

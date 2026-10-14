@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { published } from "../rows";
+import { published } from "../mappers/to-published";
 
 export async function selectContentBlocks(publishedOnly: boolean) {
   const rows = await db.contentPage.findMany({

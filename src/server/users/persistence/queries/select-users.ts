@@ -1,6 +1,6 @@
 import type { Prisma } from "../../../../../prisma/generated/client";
 import { db } from "../../../db/client";
-import { toListedAccount } from "../rows";
+import { toListedAccount } from "../mappers/to-listed-account";
 
 export async function selectUsers(
   page: number,

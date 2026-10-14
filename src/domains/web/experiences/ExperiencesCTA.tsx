@@ -1,11 +1,7 @@
 const BG_IMAGE =
   "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Closing CTA, full screen.
- * Photo, navy veil, big centred heading, two buttons.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Closing CTA, full screen. */
 export function ExperiencesCTA() {
   return (
     <section

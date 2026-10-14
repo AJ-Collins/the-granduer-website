@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assertEnquiryTransition } from "@/server/enquiries/services/enquiry-status";
+import { assertEnquiryTransition } from "@/server/enquiries/services/managed/enquiry-status";
 import { InvalidEnquiryTransitionError } from "@/server/enquiries/services/errors/invalid-enquiry-transition-error";
 
 describe("enquiry status transitions", () => {

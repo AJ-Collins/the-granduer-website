@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { AdminLoginForm } from "@/domains/admin/auth/admin-login-form";
+import { AdminLoginForm } from "@/domains/admin/auth";
 
 export default function AdminLoginPage() {
   return (

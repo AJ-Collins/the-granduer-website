@@ -1,7 +1,14 @@
-import { PageHeader, SectionCard, EmptyState } from "@/shared/components/management";
-import { IconUsers } from "@/shared/components/management/icons";
+import { cookies } from "next/headers";
+import { PageHeader, MgmtButton } from "@/shared/components/management";
+import { IconArrowLeft } from "@/shared/components/management/icons";
+import { UserProfileView } from "@/domains/admin/users";
+import { getSessionUserFromCookies } from "@/server/auth/services/sessions/get-session-user-from-cookies";
 
-export default function UserDetailsPage() {
+export default async function UserDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const session = await getSessionUserFromCookies(await cookies());
+  const currentUserId = session?.id ?? "";
+
   return (
     <>
       <PageHeader
@@ -12,15 +19,14 @@ export default function UserDetailsPage() {
           { label: "Users", href: "/admin/users" },
           { label: "User Details" },
         ]}
+        actions={
+          <MgmtButton variant="ghost" size="sm" href="/admin/users">
+            <IconArrowLeft size={16} />
+            Back to Users
+          </MgmtButton>
+        }
       />
-
-      <SectionCard title="Account Information">
-        <EmptyState
-          icon={<IconUsers />}
-          title="User details"
-          description="Detailed user profile information will be displayed here."
-        />
-      </SectionCard>
+      <UserProfileView userId={id} currentUserId={currentUserId} />
     </>
   );
 }

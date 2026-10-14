@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { EVENTS } from "@/shared/lib/events-content";
 import { EventCTA, EventHero, EventServices, EventStory } from "@/domains/web/events";
-import { Navbar } from "@/domains/web/home/Navbar";
-import { SiteFooter } from "@/domains/web/home/SiteFooter";
+import { Navbar } from "@/domains/web/shell/Navbar";
+import { SiteFooter } from "@/domains/web/shell/SiteFooter";
 
 export function generateStaticParams() {
   return EVENTS.map((e) => ({ slug: e.slug }));

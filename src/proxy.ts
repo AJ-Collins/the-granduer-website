@@ -17,6 +17,11 @@ function unauthorized(): NextResponse {
 export function proxy(request: NextRequest): NextResponse {
   const hostHeader = request.headers.get("host") ?? request.nextUrl.hostname;
   const surface = surfaceOf(hostOf(hostHeader));
+  if (process.env.DEBUG_PROXY === "1") {
+    console.log(
+      `[proxy] ${request.method} ${request.nextUrl.pathname}${request.nextUrl.search.slice(0, 40)} rsc=${request.headers.get("RSC") ?? "-"} next-url=${request.headers.get("Next-Url") ?? "-"} cookies=${request.cookies.has("dgrandeur_session")}`,
+    );
+  }
 
   if (surface === null) {
     return new NextResponse("Unknown host", { status: 404 });

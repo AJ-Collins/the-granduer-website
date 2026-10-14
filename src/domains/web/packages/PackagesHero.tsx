@@ -3,12 +3,7 @@ import { PACKAGES, PACKAGES_HERO } from "@/shared/lib/packages-content";
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Packages hero, full screen on every device.
- * Photo, navy veil, mixed-type headline, four-package preview row.
- * sm+: preview row links to each package. Below sm: square scroll button.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Packages hero, full screen on every device. */
 export function PackagesHero() {
   return (
     <section className="relative flex min-h-svh w-full flex-col items-center justify-center overflow-hidden bg-navy-deep px-[clamp(1.25rem,4vw,5rem)] pb-36 pt-28 text-center text-ivory sm:pb-32">

@@ -3,11 +3,7 @@ import { GALLERY_HERO } from "@/shared/lib/gallery-content";
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=2400&q=80";
 
-/**
- * Gallery hero, full screen on every device.
- * Photo, navy veil, mixed-type title bottom-left (lg+) or centred (below).
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Gallery hero, full screen on every device. */
 export function GalleryHero() {
   return (
     <section className="relative flex min-h-svh w-full items-end justify-center overflow-hidden bg-navy-deep px-[clamp(1.5rem,4vw,5rem)] pb-32 pt-32 text-center text-ivory sm:pb-28 lg:justify-start lg:text-left">

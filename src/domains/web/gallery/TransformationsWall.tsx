@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const u = (id: string, w = 1400) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=75`;
+import { galleryImage as u } from "@/shared/lib/gallery-image";
 
 const BEFORE = u("1519167758481-83f550bb49b3", 2000);
 const AFTER = u("1464366400600-7168b8af9bc3", 2000);
@@ -47,11 +45,7 @@ const PATTERN = [
 ];
 const BLOCK = 7;
 
-/**
- * Transformations: before/after, filters, bento wall with Load more.
- * lg: 4-column bento. Below lg: 2 columns, dense packing.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Transformations: before/after, filters, bento wall with Load more. */
 export function TransformationsWall() {
   const [filter, setFilter] = useState<Filter>("All");
   const [visible, setVisible] = useState(BLOCK);

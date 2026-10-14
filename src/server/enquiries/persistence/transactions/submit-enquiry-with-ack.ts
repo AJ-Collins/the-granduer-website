@@ -3,18 +3,9 @@ import { markRecordCompleted } from "../../../idempotency/persistence/queries/ma
 import { insertQueuedNotification } from "../../../notifications/persistence/queries/insert-queued-notification";
 import { insertEnquiry } from "../queries/insert-enquiry";
 import { resolveCatalogRefs } from "../queries/resolve-catalog-refs";
-import type { NewEnquiry } from "../rows";
+import type { SubmitEnquiryRecord } from "../rows";
 
-export type SubmitEnquiryRecord = NewEnquiry & {
-  eventTypeSlug?: string;
-  packageSlug?: string;
-  ackSubject: string;
-  ackText: string;
-  ackHtml: string;
-  idempotencyRecordId?: string;
-};
-
-/** Resolve → insert → queue → idempotency-complete, one transaction. Concurrent unpublishes cannot slip in. */
+/** Resolve → insert → queue → idempotency-complete, one transaction. */
 export async function submitEnquiryWithAck(input: SubmitEnquiryRecord) {
   const { eventTypeSlug, packageSlug, ackSubject, ackText, ackHtml, idempotencyRecordId, ...enquiry } = input;
   return db.$transaction(async (tx) => {

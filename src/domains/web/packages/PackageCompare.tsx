@@ -3,12 +3,7 @@ import { PACKAGES } from "@/shared/lib/packages-content";
 /** Bar widths: each step goes further. Decorative, not a measurement. */
 const REACH = ["w-1/4", "w-2/4", "w-3/4", "w-full"];
 
-/**
- * Comparison ladder, full screen.
- * One row per package: name, growing bar, description.
- * lg+: three columns per row. Below lg: stacked per row.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Comparison ladder, full screen. */
 export function PackageCompare() {
   return (
     <section

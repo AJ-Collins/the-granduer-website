@@ -1,4 +1,6 @@
-import { toListedAccount, WITH_ROLES, type AccountRow, type AccountStatus } from "../rows";
+import type { AccountRow, AccountStatus } from "../rows";
+import { WITH_ROLES } from "../fragments";
+import { toListedAccount } from "../mappers/to-listed-account";
 
 type StatusWriter = {
   account: {

@@ -41,7 +41,7 @@ request → src/proxy.ts (subdomain gateway + session guard, edge)
 ## Rollout from here
 
 1. ✅ Flatten: single app, cookie sessions, catalog + enquiries + users + audit + uploads.
-2. CMS studio pages: wire the stub pages to the CMS APIs (content, packages, events, faqs, testimonials, enquiries).
+2. CMS studio pages: wire the stub pages to the CMS APIs (content, packages, events, faqs, testimonials). Enquiries are admin-owned; CMS has no enquiry surface.
 3. Admin console pages: wire dashboard stats, users, roles to the admin APIs.
 4. Storefront data: replace static `*-content.ts` reads with the public APIs where live data matters (packages, events, FAQs, testimonials, gallery).
 5. E2E: Playwright spec for login → publish → public-read.

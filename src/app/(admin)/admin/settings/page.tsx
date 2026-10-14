@@ -8,7 +8,7 @@ export default function SettingsPage() {
         title="Settings"
         description="General configuration, security, and platform preferences."
         breadcrumbs={[
-          { label: "Admin", href: "/admin/dashboard" },
+          { label: "Admin", href: "/dashboard" },
           { label: "Settings" },
         ]}
       />

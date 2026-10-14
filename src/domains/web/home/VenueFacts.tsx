@@ -83,13 +83,7 @@ const STRIP = [
   },
 ];
 
-/**
- * Venue at a glance, full screen.
- * lg+: facts on navy at left, huge hall photo bleeding to the right edge.
- * Below lg: photo first, then facts. A tall three-photo strip closes the section.
- * Rectangles only. No borders, no lines, no rounding.
- * Figures are placeholders until management verifies them.
- */
+/** * Venue at a glance, full screen. */
 export function VenueFacts() {
   return (
     <section id="venue" className="w-full overflow-hidden bg-navy text-ivory">

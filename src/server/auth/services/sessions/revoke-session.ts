@@ -1,5 +1,6 @@
-import { revokeSessionRows } from "../../persistence/queries/revoke-session-rows";
+import { hashRefreshToken } from "../tokens/hash-refresh-token";
+import { revokeSessionRowsByHash } from "../../persistence/queries/revoke-session-rows-by-hash";
 
 export async function revokeSession(refreshToken: string): Promise<void> {
-  await revokeSessionRows(refreshToken);
+  await revokeSessionRowsByHash(hashRefreshToken(refreshToken));
 }

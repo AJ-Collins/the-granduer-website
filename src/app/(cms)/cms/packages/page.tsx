@@ -1,4 +1,4 @@
-import { PackagesTable } from "@/domains/cms/packages-table";
+import { PackagesTable } from "@/domains/cms/packages";
 import { listPackages } from "@/server/catalog/services/packages/list-packages";
 
 export default async function PackagesPage() {

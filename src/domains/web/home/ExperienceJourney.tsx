@@ -1,11 +1,6 @@
 import { JOURNEY_STEPS } from "@/shared/lib/home-content";
 
-/**
- * "Choose your experience" — four tiers, navy.
- * xl+: four tall photo panels with text on a fade over the image.
- * Below xl: photo on top, details underneath on deep navy (2 cols from sm).
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * "Choose your experience" — four tiers, navy. */
 export function ExperienceJourney() {
   return (
     <section id="packages" className="w-full overflow-hidden bg-navy text-ivory">

@@ -1,6 +1,6 @@
 import { PageHeader, MgmtButton, EmptyState } from "@/shared/components/management";
 import { IconUsers, IconPlus } from "@/shared/components/management/icons";
-import { UsersTable } from "@/domains/admin/users-table";
+import { UsersTable } from "@/domains/admin/users";
 import { listUsers } from "@/server/users/services/list-users";
 
 export default async function UsersPage() {
@@ -18,11 +18,11 @@ export default async function UsersPage() {
         title="Users"
         description="Manage user accounts, roles, and access across the platform."
         breadcrumbs={[
-          { label: "Admin", href: "/admin/dashboard" },
+          { label: "Admin", href: "/dashboard" },
           { label: "Users" },
         ]}
         actions={
-          <MgmtButton variant="primary" href="/admin/users/new">
+          <MgmtButton variant="primary" href="/users/new">
             <IconPlus size={16} />
             Create User
           </MgmtButton>
@@ -37,7 +37,7 @@ export default async function UsersPage() {
           title="No users found"
           description="Create your first user account to get started."
           action={
-            <MgmtButton variant="primary" href="/admin/users/new">
+            <MgmtButton variant="primary" href="/users/new">
               <IconPlus size={16} />
               Create User
             </MgmtButton>

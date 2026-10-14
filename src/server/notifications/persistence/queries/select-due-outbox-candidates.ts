@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { stuckSendingBefore } from "../../services/backoff/stuck-sending-before";
+import { stuckSendingBefore } from "../policy/stuck-sending-before";
 
 export async function selectDueOutboxCandidates(limit: number) {
   return db.notificationOutbox.findMany({

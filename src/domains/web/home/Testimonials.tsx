@@ -7,13 +7,7 @@ const QUOTES = [
   { quote: "A fourth quote about the hall and the setup goes here.", name: "Client name", detail: "Gala" },
 ];
 
-/**
- * Testimonials — full-screen photo with the quotes on top.
- * One large feature quote, then the rest in soft frosted rectangles.
- * Static, no JS. Replace placeholders with approved client quotes before
- * launch; hide the section until real quotes exist.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Testimonials — full-screen photo with the quotes on top. */
 export function Testimonials() {
   const [feature, ...rest] = QUOTES;
 

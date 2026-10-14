@@ -7,12 +7,7 @@ const ARRIVAL_IMAGE =
 const HOSPITALITY_IMAGE =
   "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80";
 
-/**
- * Brand promise, full screen.
- * lg+: huge hall image fills the left 7 columns edge to edge; text and two
- * supporting images sit on the right. Below lg: stacked.
- * Rectangles and squares only. No borders, no lines, no rounding.
- */
+/** * Brand promise, full screen. */
 export function Intro() {
   return (
     <section

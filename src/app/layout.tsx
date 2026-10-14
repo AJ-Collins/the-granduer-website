@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${anton.variable} ${fraunces.variable} ${pinyon.variable} ${grotesk.variable} ${instrument.variable} ${italiana.variable} h-full antialiased`}
     >
       <head>

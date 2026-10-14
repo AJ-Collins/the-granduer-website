@@ -1,11 +1,6 @@
 import { eventImage } from "./images";
 
-/**
- * Core story for an event type, full screen.
- * The story line set large, then three staggered photos.
- * lg: 5/4/3 columns, bottom-aligned. Below lg: stacked.
- * Rectangles only. No borders, no lines, no rounding.
- */
+/** * Core story for an event type, full screen. */
 export function EventStory({ story }: { story: string }) {
   return (
     <section

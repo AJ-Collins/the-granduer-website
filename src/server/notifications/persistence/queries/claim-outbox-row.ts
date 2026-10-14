@@ -1,5 +1,5 @@
 import { db } from "../../../db/client";
-import { stuckSendingBefore } from "../../services/backoff/stuck-sending-before";
+import { stuckSendingBefore } from "../policy/stuck-sending-before";
 import type { ClaimedOutboxRow } from "../types";
 import type { DueCandidate } from "./select-due-outbox-candidates";
 

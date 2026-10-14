@@ -28,6 +28,11 @@ export type StoredEnquiryRow = {
   updatedAt: Date;
 };
 
-export function toEnquiryRecord(row: StoredEnquiryRow) {
-  return { ...row, kind: row.kind.toLowerCase(), status: row.status.toLowerCase() };
-}
+export type SubmitEnquiryRecord = NewEnquiry & {
+  eventTypeSlug?: string;
+  packageSlug?: string;
+  ackSubject: string;
+  ackText: string;
+  ackHtml: string;
+  idempotencyRecordId?: string;
+};

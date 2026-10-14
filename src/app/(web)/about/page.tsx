@@ -1,6 +1,6 @@
 import { AboutCTA, AboutHero, AboutOpening, ExperiencePillars, TrustSignals, ValuesTeam } from "@/domains/web/about";
-import { Navbar } from "@/domains/web/home/Navbar";
-import { SiteFooter } from "@/domains/web/home/SiteFooter";
+import { Navbar } from "@/domains/web/shell/Navbar";
+import { SiteFooter } from "@/domains/web/shell/SiteFooter";
 export default function AboutPage() {
   return (
     <>

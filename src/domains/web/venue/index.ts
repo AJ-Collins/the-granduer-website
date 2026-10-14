@@ -1,10 +1,12 @@
 export { VenueHero } from "./VenueHero";
 export { VenueOverview } from "./VenueOverview";
 export { CapacityLayouts } from "./CapacityLayouts";
+export { FurnitureTile } from "./FurnitureTile";
 export { FurnitureStaging } from "./FurnitureStaging";
 export { PowerClimate } from "./PowerClimate";
 export { ArrivalSecurity } from "./ArrivalSecurity";
 export { RoomsFacilities } from "./RoomsFacilities";
 export { TechSetup } from "./TechSetup";
 export { VenueResources } from "./VenueResources";
+export { ResourceTile } from "./ResourceTile";
 export { VenueStickyCTA } from "./VenueStickyCTA";

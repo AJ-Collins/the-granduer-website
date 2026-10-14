@@ -1,4 +1,4 @@
-import { ensureSeedFaq } from "../../src/server/cms/persistence/queries/ensure-seed-faq";
+import { ensureSeedFaq } from "../../src/server/cms/persistence/transactions/ensure-seed-faq";
 
 export async function seedContent() {
   const faqs = [

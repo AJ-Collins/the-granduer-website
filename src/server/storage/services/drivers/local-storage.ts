@@ -1,9 +1,7 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, rm, stat, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { buildObjectKey } from "../keys/build-object-key";
 import type { ObjectStorage, PutOptions, StoredObject } from "./storage-port";
 
-/** Dependency-free dev driver: disk under STORAGE_DIR, served via /api/files/<key>. */
 export class LocalObjectStorage implements ObjectStorage {
   readonly name = "local" as const;
   private dir: string;
@@ -18,15 +16,15 @@ export class LocalObjectStorage implements ObjectStorage {
   }
 
   async put(data: Uint8Array, options: PutOptions): Promise<StoredObject> {
-    const key = buildObjectKey(options.prefix ?? "uploads", options.mimeType);
-    const path = this.pathFor(key);
+    const path = this.pathFor(options.key);
     await mkdir(dirname(path), { recursive: true });
     await writeFile(path, data);
-    return { key, sizeBytes: data.length, mimeType: options.mimeType };
+    return { key: options.key, sizeBytes: data.length, mimeType: options.mimeType };
   }
 
   async get(key: string) {
     try {
+      const { readFile } = await import("node:fs/promises");
       const data = await readFile(this.pathFor(key));
       return { data: new Uint8Array(data), mimeType: "application/octet-stream" };
     } catch {
@@ -39,6 +37,11 @@ export class LocalObjectStorage implements ObjectStorage {
   }
 
   async exists(key: string): Promise<boolean> {
-    return (await this.get(key)) !== null;
+    try {
+      await stat(this.pathFor(key));
+      return true;
+    } catch {
+      return false;
+    }
   }
 }
