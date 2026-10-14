@@ -1,6 +1,6 @@
-import { ConversionDoors, ProposalForm, ViewingForm } from "@/domains/enquiry";
-import { Navbar } from "@/domains/home/Navbar";
-import { SiteFooter } from "@/domains/home/SiteFooter";
+import { ConversionDoors, ProposalForm, ViewingForm } from "@/domains/web/enquiry";
+import { Navbar } from "@/domains/web/home/Navbar";
+import { SiteFooter } from "@/domains/web/home/SiteFooter";
 export default function ContactPage() {
   return (
     <>

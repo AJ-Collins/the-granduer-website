@@ -1,7 +1,7 @@
 import { EVENTS } from "@/shared/lib/events-content";
-import { Navbar } from "@/domains/home/Navbar";
-import { SiteFooter } from "@/domains/home/SiteFooter";
-import { eventImage } from "@/domains/events/images";
+import { Navbar } from "@/domains/web/home/Navbar";
+import { SiteFooter } from "@/domains/web/home/SiteFooter";
+import { eventImage } from "@/domains/web/events/images";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=75";

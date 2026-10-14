@@ -254,3 +254,28 @@ model NotificationOutbox {
 
   @@index([status, nextAttemptAt])
 }
+
+enum IdempotencyStatus {
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+model IdempotencyRecord {
+  id             String           @id @default(cuid())
+  scope          String
+  actor          String           @default("public")
+  key            String
+  fingerprint    String
+  status         IdempotencyStatus @default(IN_PROGRESS)
+  responseStatus Int?
+  responseBody   Json?
+  lastError      String?
+  leaseExpiresAt DateTime
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  // One logical operation per actor: retries share the row, other actors
+  // can never read or collide with it.
+  @@unique([scope, actor, key])
+}

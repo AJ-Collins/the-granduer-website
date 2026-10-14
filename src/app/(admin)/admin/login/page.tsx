@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { LoginForm } from "@/domains/auth/login-form";
+import { AdminLoginForm } from "@/domains/admin/auth/admin-login-form";
 
 export default function AdminLoginPage() {
   return (
     <Suspense>
-      <LoginForm title="Admin Login" allowedRoles={["admin", "superadmin"]} />
+      <AdminLoginForm />
     </Suspense>
   );
 }

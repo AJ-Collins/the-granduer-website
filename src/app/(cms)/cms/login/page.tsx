@@ -1,13 +1,10 @@
 import { Suspense } from "react";
-import { LoginForm } from "@/domains/auth/login-form";
+import { CmsLoginForm } from "@/domains/cms/auth/cms-login-form";
 
 export default function CmsLoginPage() {
   return (
     <Suspense>
-      <LoginForm
-        title="CMS Login"
-        allowedRoles={["admin", "superadmin", "editor", "viewer"]}
-      />
+      <CmsLoginForm />
     </Suspense>
   );
 }

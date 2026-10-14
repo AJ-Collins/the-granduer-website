@@ -7,6 +7,7 @@ import {
   Instrument_Serif,
   Italiana,
 } from "next/font/google";
+import { ThemeScript } from "@/shared/components/management/theme-provider";
 import "./globals.css";
 
 const anton = Anton({
@@ -57,8 +58,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${anton.variable} ${fraunces.variable} ${pinyon.variable} ${grotesk.variable} ${instrument.variable} ${italiana.variable} h-full antialiased`}
     >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

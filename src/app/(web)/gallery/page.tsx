@@ -1,6 +1,6 @@
-import { AssetGroups, GalleryCTA, GalleryHero, TransformationsWall } from "@/domains/gallery";
-import { Navbar } from "@/domains/home/Navbar";
-import { SiteFooter } from "@/domains/home/SiteFooter";
+import { AssetGroups, GalleryCTA, GalleryHero, TransformationsWall } from "@/domains/web/gallery";
+import { Navbar } from "@/domains/web/home/Navbar";
+import { SiteFooter } from "@/domains/web/home/SiteFooter";
 export default function GalleryPage() {
   return (
     <>

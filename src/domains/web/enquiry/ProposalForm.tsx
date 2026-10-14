@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   EVENT_TYPES,
   PACKAGE_OPTIONS,
@@ -21,12 +21,16 @@ const IMAGE =
  */
 export function ProposalForm() {
   const [status, setStatus] = useState<Status>("idle");
+  // One key per logical submission: retries (double-click, timeout) replay
+  // instead of creating duplicate enquiries. Rotated after success.
+  const keyRef = useRef(crypto.randomUUID());
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus("sending");
-    const ok = await sendEnquiry("proposal", form);
+    const ok = await sendEnquiry("proposal", form, keyRef.current);
+    if (ok) keyRef.current = crypto.randomUUID();
     setStatus(ok ? "done" : "error");
   }
 

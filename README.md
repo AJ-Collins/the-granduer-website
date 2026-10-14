@@ -25,7 +25,7 @@ pnpm db:seed                    # roles + admin + catalog + faqs
 pnpm dev                        # next dev :3000
 ```
 
-Seeded admin: `admin@dgrandeur.com` (set `SEED_ADMIN_PASSWORD` when seeding).
+Seeded admin: `admin@dgrandeur.com` (set `SeedAdmin123!change` when seeding).
 
 ## Structure
 
@@ -86,6 +86,27 @@ every 10s, `SKIP LOCKED` — safe with N instances) dispatches due rows via `sen
 - Max **3 attempts**, exponential backoff (2/4/8 min), then `FAILED` (dead-letter).
 - Admin controls: `GET /api/admin/outbox` (filters `status`, `type`), `GET /:id`,
   `PATCH /:id {"action":"retry"}` (FAILED-only, audited as `admin.outbox-retried`).
+
+## Idempotency (shared kernel)
+
+Retrying a request never repeats its effect. `src/server/idempotency/` owns key
+reservation, request fingerprints, and result storage; each context decides what
+a duplicate means and recovers inside its own transaction.
+
+- Clients send `Idempotency-Key` (required on `POST /api/enquiry`, `[A-Za-z0-9_-]{1,128}`).
+- The key binds to one exact request (method + path + actor + body hash).
+  Same key + same payload replays the stored response; same key + different
+  payload → `409 IDEMPOTENCY_CONFLICT`; a live identical attempt → `409
+  IDEMPOTENCY_IN_PROGRESS` with `Retry-After`.
+- Keys are scoped per actor (`scope, actor, key` unique), so one user can never
+  read or collide with another's result.
+- The business write and the result-store share one transaction, so a timeout
+  after commit still replays instead of duplicating. Crashed attempts recover
+  after a 5-minute lease (single winner via conditional refresh); failed keys
+  accept same-payload retries.
+- Covered in `tests/integration/idempotency.test.ts`: replay, conflict, 10-way
+  concurrency race, crash recovery race, failed retry, cross-actor isolation,
+  and a double-POST that yields one enquiry + one queued mail.
 
 ## Tests
 

@@ -5,7 +5,7 @@ import type { EnquiryBody } from "../../requests/read-enquiry-body";
 
 export { UnknownCatalogRefError };
 
-export async function submitEnquiry(input: EnquiryBody) {
+export async function submitEnquiry(input: EnquiryBody, idempotency?: { recordId: string }) {
   const mail = enquiryAckMail(input.name, input.kind);
   return submitEnquiryWithAck({
     kind: input.kind,
@@ -19,5 +19,6 @@ export async function submitEnquiry(input: EnquiryBody) {
     ackSubject: mail.subject,
     ackText: mail.text,
     ackHtml: mail.html,
+    ...(idempotency && { idempotencyRecordId: idempotency.recordId }),
   });
 }

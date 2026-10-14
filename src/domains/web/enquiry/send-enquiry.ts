@@ -1,7 +1,8 @@
-/** Sends the form to /api/enquiry. Returns true on success. */
+/** Sends the form to /api/enquiry. Returns true on success. Pass the same key when retrying one logical submission. */
 export async function sendEnquiry(
   kind: "viewing" | "proposal",
   form: HTMLFormElement,
+  key?: string,
 ): Promise<boolean> {
   try {
     const fd = new FormData(form);
@@ -13,7 +14,7 @@ export async function sendEnquiry(
 
     const res = await fetch("/api/enquiry", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...(key && { "Idempotency-Key": key }) },
       body: JSON.stringify({ kind, data }),
     });
     return res.ok;

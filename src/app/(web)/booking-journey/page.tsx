@@ -1,6 +1,6 @@
-import { BookingHero, JourneyCTA, JourneyStages } from "@/domains/booking-journey";
-import { Navbar } from "@/domains/home/Navbar";
-import { SiteFooter } from "@/domains/home/SiteFooter";
+import { BookingHero, JourneyCTA, JourneyStages } from "@/domains/web/booking-journey";
+import { Navbar } from "@/domains/web/home/Navbar";
+import { SiteFooter } from "@/domains/web/home/SiteFooter";
 export default function BookingJourneyPage() {
   return (
     <>
