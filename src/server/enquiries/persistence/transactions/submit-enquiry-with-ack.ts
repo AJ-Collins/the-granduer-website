@@ -6,11 +6,11 @@ import { resolveCatalogRefs } from "../queries/resolve-catalog-refs";
 import type { SubmitEnquiryRecord } from "../rows";
 
 /** Resolve → insert → queue → idempotency-complete, one transaction. */
-export async function submitEnquiryWithAck(input: SubmitEnquiryRecord) {
+export async function submitEnquiryWithAck(input: SubmitEnquiryRecord, flagged: boolean) {
   const { eventTypeSlug, packageSlug, ackSubject, ackText, ackHtml, idempotencyRecordId, ...enquiry } = input;
   return db.$transaction(async (tx) => {
     const refs = await resolveCatalogRefs(tx, { eventTypeSlug, packageSlug });
-    const created = await insertEnquiry(tx, { ...enquiry, ...refs });
+    const created = await insertEnquiry(tx, { ...enquiry, ...refs }, flagged);
     await insertQueuedNotification(tx, {
       type: "enquiry.ack",
       to: input.email,

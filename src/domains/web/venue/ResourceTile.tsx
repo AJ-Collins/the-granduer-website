@@ -1,3 +1,5 @@
+"use client";
+
 export type ResourceTileData = {
   script: string;
   name: string;
@@ -7,10 +9,30 @@ export type ResourceTileData = {
   alt: string;
 };
 
-export function ResourceTile({ tile, big = false }: { tile: ResourceTileData; big?: boolean }) {
+function captureBrochureDownload() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    fetch("/api/analytics/event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      keepalive: true,
+      body: JSON.stringify({
+        eventName: "brochure_download",
+        path: window.location.pathname,
+        ...(params.get("utm_source") && { source: params.get("utm_source") }),
+        ...(params.get("utm_medium") && { medium: params.get("utm_medium") }),
+        ...(params.get("utm_campaign") && { campaign: params.get("utm_campaign") }),
+      }),
+    }).catch(() => {});
+  } catch {
+  }
+}
+
+export function ResourceTile({ tile, big = false, trackDownload = false }: { tile: ResourceTileData; big?: boolean; trackDownload?: boolean }) {
   return (
     <a
       href={tile.href}
+      onClick={trackDownload ? captureBrochureDownload : undefined}
       className="group relative block h-full w-full overflow-hidden bg-navy-deep text-ivory"
     >
       <img

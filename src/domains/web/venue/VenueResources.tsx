@@ -58,7 +58,7 @@ export function VenueResources() {
           <div className="grid gap-3 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1 lg:grid-rows-2 lg:gap-4">
             {SIDE.map((t) => (
               <div key={t.name} className="aspect-[4/3] lg:aspect-auto">
-                <ResourceTile tile={t} />
+                <ResourceTile tile={t} trackDownload />
               </div>
             ))}
           </div>

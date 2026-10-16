@@ -114,3 +114,5 @@ a duplicate means and recovers inside its own transaction.
 pnpm test        # vitest → tests/unit/**
 pnpm exec tsc --noEmit
 ```
+## Email
+- Using ``sendgrid from twilio``

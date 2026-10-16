@@ -112,7 +112,18 @@ describe("reserve → complete → replay", () => {
 });
 
 describe("POST /api/enquiry end to end", () => {
-  const body = { kind: "viewing", name: "Idem Test", email: "idem-x@example.com", phone: "+254700000000" };
+  const body = {
+    kind: "viewing",
+    data: {
+      name: "Idem Test",
+      email: "idem-x@example.com",
+      phone: "+254700000000",
+      eventType: "Weddings",
+      preferredDate: "2026-06-14",
+      consent: true,
+    },
+  };
+  const email = "idem-x@example.com";
   const post = (k: string, b: unknown = body) =>
     createEnquiry(
       new Request("http://localhost/api/enquiry", {
@@ -129,13 +140,13 @@ describe("POST /api/enquiry end to end", () => {
     expect(first.status).toBe(201);
     expect(second.status).toBe(201);
     expect(await second.json()).toEqual(await first.clone().json());
-    expect(await db.enquiry.count({ where: { email: body.email } })).toBe(1);
-    expect(await db.notificationOutbox.count({ where: { to: body.email } })).toBe(1);
-    await post(k, { ...body, name: "Changed" }).then(async (r) => {
+    expect(await db.enquiry.count({ where: { email } })).toBe(1);
+    expect(await db.notificationOutbox.count({ where: { to: email } })).toBe(1);
+    await post(k, { kind: "viewing", data: { ...body.data, name: "Changed" } }).then(async (r) => {
       expect(r.status).toBe(409);
       expect((await r.json() as { error: { code: string } }).error.code).toBe("IDEMPOTENCY_CONFLICT");
     });
-    expect(await db.enquiry.count({ where: { email: body.email } })).toBe(1);
+    expect(await db.enquiry.count({ where: { email } })).toBe(1);
   });
 
   it("requires the key", async () => {

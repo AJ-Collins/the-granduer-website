@@ -32,7 +32,7 @@ export type MgmtTopNavProps = {
 export function MgmtTopNav({
   orgName = "AJ-Collins's Org",
   orgBadge = "FREE",
-  projectName = "app-backend",
+  projectName = "D'Grandeur",
   branchName = "main",
   branchBadge = "PRODUCTION",
   user,
@@ -78,13 +78,13 @@ export function MgmtTopNav({
       />
 
       <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <button
+        {/* <button
           type="button"
           onClick={() => setFeedbackOpen(true)}
           className="hidden md:inline-block text-xs font-medium text-[var(--color-mgmt-text-secondary)] hover:text-[var(--color-mgmt-text)] px-2.5 py-1.5 rounded-md hover:bg-[var(--color-mgmt-surface-hover)] transition-colors"
         >
           Feedback
-        </button>
+        </button> */}
 
         <button
           type="button"
@@ -112,22 +112,22 @@ export function MgmtTopNav({
           >
             <IconHelpCircle size={16} />
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={() => alert("Tip: You can press Ctrl+K anywhere to trigger the quick search command palette.")}
             aria-label="Tips & Inspirations"
             className="w-8 h-8 rounded-full border border-[var(--color-mgmt-border)] hover:bg-[var(--color-mgmt-surface-hover)] hover:text-[var(--color-mgmt-text)] flex items-center justify-center transition-colors"
           >
             <IconLightbulb size={16} />
-          </button>
-          <button
+          </button> */}
+          {/* <button
             type="button"
             onClick={() => setConnectModalOpen(true)}
             aria-label="Developer Console"
             className="w-8 h-8 rounded-full border border-[var(--color-mgmt-border)] hover:bg-[var(--color-mgmt-surface-hover)] hover:text-[var(--color-mgmt-text)] flex items-center justify-center transition-colors"
           >
             <IconTerminal size={15} />
-          </button>
+          </button> */}
         </div>
 
         <div className="flex items-center">

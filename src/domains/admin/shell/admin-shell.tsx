@@ -7,11 +7,14 @@ import {
   type ProfileUser,
 } from "@/shared/components/management";
 import {
+  IconActivity,
   IconDashboard,
   IconInbox,
+  IconTrendingUp,
   IconUsers,
   IconShield,
   IconSettings,
+  IconMail,
 } from "@/shared/components/management/icons";
 
 const NAV_GROUPS: NavGroup[] = [
@@ -24,6 +27,8 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Management",
     items: [
       { href: "/submissions", label: "Submissions", icon: <IconInbox /> },
+      { href: "/opportunities", label: "Opportunities", icon: <IconTrendingUp /> },
+      { href: "/marketing", label: "Marketing", icon: <IconActivity /> },
       { href: "/users", label: "Users", icon: <IconUsers /> },
       { href: "/roles", label: "Roles", icon: <IconShield /> },
     ],
@@ -31,6 +36,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "System",
     items: [
+      { href: "/outbox", label: "Outbox", icon: <IconMail /> },
       { href: "/settings", label: "Settings", icon: <IconSettings /> },
     ],
   },
@@ -55,7 +61,7 @@ export function AdminShell({ children, user }: AdminShellProps) {
       basePath=""
       orgName="AJ-Collins's Org"
       orgBadge="FREE"
-      projectName="app-backend"
+      projectName="D'Grandeur"
       branchName="main"
       branchBadge="PRODUCTION"
       user={user}

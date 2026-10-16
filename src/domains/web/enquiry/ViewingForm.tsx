@@ -8,7 +8,18 @@ import { useEnquiryForm } from "./use-enquiry-form";
 
 /** Book a Viewing. */
 export function ViewingForm() {
-  const { status, onSubmit } = useEnquiryForm("viewing");
+  const { status, onSubmit } = useEnquiryForm("viewing", (ok) => {
+    if (!ok) return;
+    try {
+      fetch("/api/analytics/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({ eventName: "viewing_form_submit", path: window.location.pathname }),
+      }).catch(() => {});
+    } catch {
+    }
+  });
   return (
     <EnquiryFormShell
       id="viewing"

@@ -1,4 +1,6 @@
 export { ConversionDoors } from "./ConversionDoors";
+export { ConversionDoorBody } from "./conversion-door-body";
+export { WhatsappLink, captureWhatsappClick } from "./whatsapp-link";
 export { ViewingForm } from "./ViewingForm";
 export { ProposalForm } from "./ProposalForm";
 export { Field } from "./Field";

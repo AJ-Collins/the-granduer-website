@@ -103,7 +103,7 @@ export function MgmtProfileDropdown({
               <IconUser size={16} className="text-[var(--color-mgmt-text-muted)] shrink-0" />
               <span>Account</span>
             </a>
-            <button
+            {/* <button
               type="button"
               role="menuitem"
               onClick={() => {
@@ -126,12 +126,12 @@ export function MgmtProfileDropdown({
             >
               <IconFileText size={16} className="text-[var(--color-mgmt-text-muted)] shrink-0" />
               <span>Changelog</span>
-            </button>
+            </button> */}
           </div>
 
           <ProfileThemeSelector />
 
-          <div className="py-1.5 border-b border-[var(--color-mgmt-border-subtle)]">
+          {/* <div className="py-1.5 border-b border-[var(--color-mgmt-border-subtle)]">
             <div className="flex items-center justify-between px-4 py-2 text-sm text-[var(--color-mgmt-text)] hover:bg-[var(--color-mgmt-surface-hover)] cursor-default transition-colors">
               <div>
                 <p className="text-sm font-normal text-[var(--color-mgmt-text)] leading-tight">Timezone</p>
@@ -139,9 +139,9 @@ export function MgmtProfileDropdown({
               </div>
               <IconChevronRight size={14} className="text-[var(--color-mgmt-text-muted)]" />
             </div>
-          </div>
+          </div> */}
 
-          <div className="p-3 border-b border-[var(--color-mgmt-border-subtle)]">
+          {/* <div className="p-3 border-b border-[var(--color-mgmt-border-subtle)]">
             <button
               type="button"
               onClick={() => {
@@ -152,7 +152,7 @@ export function MgmtProfileDropdown({
             >
               <span>Upgrade to Pro</span>
             </button>
-          </div>
+          </div> */}
 
           <div className="py-1.5">
             <button

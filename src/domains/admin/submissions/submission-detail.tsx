@@ -1,4 +1,5 @@
-import { Badge } from "@/shared/components/ui/Badge";
+import { SectionCard, StatusBadge } from "@/shared/components/management";
+import { InfoRow } from "@/domains/admin/users";
 
 export type SubmissionDetailData = {
   id: string;
@@ -14,32 +15,35 @@ export type SubmissionDetailData = {
   createdAt: Date;
 };
 
-const FIELDS: { label: string; render: (s: SubmissionDetailData) => string }[] = [
-  { label: "Kind", render: (s) => s.kind },
-  { label: "Name", render: (s) => s.name },
-  { label: "Email", render: (s) => s.email },
-  { label: "Phone", render: (s) => s.phone ?? "—" },
-  { label: "Message", render: (s) => s.message ?? "—" },
-  { label: "Event date", render: (s) => (s.eventDate ? s.eventDate.toLocaleDateString() : "—") },
-  { label: "Assigned to", render: (s) => s.assignedToEmail ?? "Unassigned" },
-  { label: "Notes", render: (s) => s.notes ?? "—" },
-  { label: "Received", render: (s) => s.createdAt.toLocaleString() },
-];
-
-export function SubmissionDetail({ submission }: { submission: SubmissionDetailData }) {
+export function SubmissionDetail({
+  submission,
+  action,
+}: {
+  submission: SubmissionDetailData;
+  action?: React.ReactNode;
+}) {
   return (
-    <div>
-      <h1>
-        {submission.name} <Badge>{submission.status}</Badge>
-      </h1>
-      <dl>
-        {FIELDS.map((f) => (
-          <div key={f.label}>
-            <dt>{f.label}</dt>
-            <dd>{f.render(submission)}</dd>
-          </div>
-        ))}
-      </dl>
+    <div className="space-y-5">
+      <SectionCard title="Submission Details" actions={action}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+          <InfoRow label="Kind" value={submission.kind} />
+          <InfoRow label="Name" value={submission.name} />
+          <InfoRow label="Email" value={submission.email} />
+          <InfoRow label="Phone" value={submission.phone ?? "—"} />
+          <InfoRow label="Message" value={submission.message ?? "—"} />
+          <InfoRow
+            label="Event date"
+            value={submission.eventDate ? submission.eventDate.toLocaleDateString() : "—"}
+          />
+          <InfoRow label="Assigned to" value={submission.assignedToEmail ?? "Unassigned"} />
+          <InfoRow label="Notes" value={submission.notes ?? "—"} />
+          <InfoRow
+            label="Status"
+            value={<StatusBadge variant="info">{submission.status}</StatusBadge>}
+          />
+          <InfoRow label="Received" value={submission.createdAt.toLocaleString()} />
+        </div>
+      </SectionCard>
     </div>
   );
 }

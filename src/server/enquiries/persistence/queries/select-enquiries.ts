@@ -2,10 +2,20 @@ import type { Prisma } from "../../../../../prisma/generated/client";
 import { db } from "../../../db/client";
 import { toEnquiryRecord } from "../mappers/to-enquiry-record";
 
-export async function selectEnquiries(page: number, pageSize: number, status?: string) {
-  const where: Prisma.EnquiryWhereInput = status
-    ? { status: status.toUpperCase() as "NEW" | "ASSIGNED" | "CONTACTED" | "CLOSED" }
-    : {};
+export type EnquiryFilters = {
+  status?: string;
+  kind?: "viewing" | "proposal";
+  flagged?: boolean;
+};
+
+export async function selectEnquiries(page: number, pageSize: number, filters: EnquiryFilters = {}) {
+  const where: Prisma.EnquiryWhereInput = {
+    ...(filters.status && {
+      status: filters.status.toUpperCase() as "NEW" | "ASSIGNED" | "CONTACTED" | "CLOSED",
+    }),
+    ...(filters.kind && { kind: filters.kind.toUpperCase() as "VIEWING" | "PROPOSAL" }),
+    ...(filters.flagged !== undefined && { flagged: filters.flagged }),
+  };
   const [rows, total] = await Promise.all([
     db.enquiry.findMany({
       where,

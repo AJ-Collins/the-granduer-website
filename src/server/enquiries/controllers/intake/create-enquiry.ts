@@ -10,6 +10,7 @@ import { reserveIdempotencyKey } from "../../../idempotency/services/reserve-ide
 import { enforceRateLimit } from "../../../rate-limit/enforce-rate-limit";
 import { enquiryBodySchema } from "../../requests/read-enquiry-body";
 import { submitEnquiry } from "../../services/intake/submit-enquiry";
+import { recordSubmissionRejection } from "../../services/intake/record-submission-rejection";
 import { UnknownCatalogRefError } from "../../persistence/errors/unknown-catalog-ref-error";
 
 const SCOPE = "enquiry:create";
@@ -17,11 +18,21 @@ const ACTOR = "public";
 
 export async function createEnquiry(req: Request): Promise<Response> {
   const parsed = await parseBody(req, enquiryBodySchema);
-  if ("response" in parsed) return parsed.response;
+  if ("response" in parsed) {
+    await recordSubmissionRejection({ reason: "validation" });
+    return parsed.response;
+  }
   const keyed = readIdempotencyKey(req);
   if ("response" in keyed) return keyed.response;
-  const limit = await enforceRateLimit(req, ["enquiry-ip"], { email: parsed.data.email });
-  if (limit.blocked) return limit.blocked;
+  const limit = await enforceRateLimit(req, ["enquiry-ip"], { email: parsed.data.data.email });
+  if (limit.blocked) {
+    await recordSubmissionRejection({
+      kind: parsed.data.kind,
+      email: parsed.data.data.email,
+      reason: "rate-limit",
+    });
+    return limit.blocked;
+  }
   const fingerprint = fingerprintRequest({
     method: req.method,
     path: new URL(req.url).pathname,

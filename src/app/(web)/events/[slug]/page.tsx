@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { EVENTS } from "@/shared/lib/events-content";
-import { EventCTA, EventHero, EventServices, EventStory } from "@/domains/web/events";
+import { EventCTA, EventHero, EventServices, EventStory, EventViewBeacon } from "@/domains/web/events";
 import { Navbar } from "@/domains/web/shell/Navbar";
 import { SiteFooter } from "@/domains/web/shell/SiteFooter";
 
@@ -19,6 +19,7 @@ export default async function EventSlugPage({
 
   return (
     <>
+      <EventViewBeacon slug={slug} />
       <Navbar />
       <main>
         <EventHero title={event.title} />

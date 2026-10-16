@@ -176,11 +176,93 @@ model Enquiry {
   assignedToId String?
   assignedTo   Account?      @relation("AssignedEnquiries", fields: [assignedToId], references: [id], onDelete: SetNull)
   notes        String?
+  eventTypeName String?
+  preferredDate DateTime?
+  altDate       DateTime?
+  guests        Int?
+  eventTime     String?
+  packageInterest String?
+  services      String[]      @default([])
+  budget        String?
+  source        String?
+  details       String?
+  consent       Boolean       @default(false)
+  flagged       Boolean       @default(false)
+  trafficSource String?
+  medium        String?
+  campaign      String?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 
   @@index([status, createdAt])
   @@index([email])
+  @@index([flagged, createdAt])
+  @@index([source, medium, campaign])
+  opportunities Opportunity[]
+  analyticsEvents AnalyticsEvent[]
+}
+
+model SubmissionRejection {
+  id        String   @id @default(cuid())
+  kind      String?
+  email     String?
+  reason    String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  eventName String
+  path      String
+  source    String?
+  medium    String?
+  campaign  String?
+  enquiryId String?
+  enquiry   Enquiry? @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  occurredAt DateTime @default(now())
+
+  @@index([eventName, occurredAt])
+  @@index([source, medium, campaign])
+}
+
+enum OpportunityStage {
+  VIEWING_SCHEDULED
+  PROPOSAL_SENT
+  DATE_HELD
+  DEPOSIT_RECEIVED
+  CONTRACT_SIGNED
+  IN_PLANNING
+  DELIVERED
+  REVIEWED
+}
+
+model Opportunity {
+  id             String                    @id @default(cuid())
+  enquiryId      String
+  enquiry        Enquiry                   @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  stage          OpportunityStage          @default(VIEWING_SCHEDULED)
+  stageChangedAt DateTime                  @default(now())
+  createdAt      DateTime                  @default(now())
+  updatedAt      DateTime                  @updatedAt
+  transitions    OpportunityStageTransition[]
+
+  @@index([enquiryId])
+  @@index([stage, createdAt])
+}
+
+model OpportunityStageTransition {
+  id            String            @id @default(cuid())
+  opportunityId String
+  opportunity   Opportunity       @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  from          OpportunityStage?
+  to            OpportunityStage
+  notes         String?
+  actorId       String?
+  createdAt     DateTime          @default(now())
+
+  @@index([opportunityId, createdAt])
 }
 
 model AuditLog {
@@ -195,6 +277,18 @@ model AuditLog {
 
   @@index([entityType, entityId])
   @@index([createdAt])
+}
+
+model SiteSetting {
+  id           String   @id @default("site")
+  phone        String   @default("")
+  whatsapp     String   @default("")
+  supportEmail String   @default("")
+  address      String   @default("")
+  socialLinks  Json?
+  openingHours Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Session {

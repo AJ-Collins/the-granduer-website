@@ -58,6 +58,15 @@ export function TransformationsWall() {
   function pick(f: Filter) {
     setFilter(f);
     setVisible(BLOCK);
+    try {
+      fetch("/api/analytics/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({ eventName: "gallery_engagement", path: window.location.pathname }),
+      }).catch(() => {});
+    } catch {
+    }
   }
 
   return (

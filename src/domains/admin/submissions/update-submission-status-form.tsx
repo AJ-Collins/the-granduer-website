@@ -2,8 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { SectionCard, MgmtButton, Alert } from "@/shared/components/management";
 
 const STATUSES = ["new", "assigned", "contacted", "closed"] as const;
+
+const inputClass =
+  "w-full px-3 py-2.5 text-sm bg-[var(--color-mgmt-input-bg)] border border-[var(--color-mgmt-input-border)] rounded-[var(--radius-mgmt-md)] text-[var(--color-mgmt-text)] placeholder:text-[var(--color-mgmt-text-muted)] focus:outline-none focus:border-[var(--color-mgmt-accent)] transition-colors";
 
 export function UpdateSubmissionStatusForm({
   id,
@@ -44,25 +48,50 @@ export function UpdateSubmissionStatusForm({
   }
 
   return (
-    <form onSubmit={submit}>
-      <label>
-        Status
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          {STATUSES.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Notes
-        <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={4} />
-      </label>
-      {error && <p role="alert">{error}</p>}
-      <button type="submit" disabled={busy}>
-        {busy ? "Saving…" : "Save status"}
-      </button>
-    </form>
+    <SectionCard title="Status" description="Move this submission through triage.">
+      <form onSubmit={submit} className="space-y-4">
+        {error && <Alert variant="error" onDismiss={() => setError(null)}>{error}</Alert>}
+        <div className="space-y-1.5">
+          <label
+            htmlFor="submission-status"
+            className="block text-xs font-medium text-[var(--color-mgmt-text-secondary)]"
+          >
+            Status
+          </label>
+          <select
+            id="submission-status"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className={inputClass}
+          >
+            {STATUSES.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="space-y-1.5">
+          <label
+            htmlFor="submission-notes"
+            className="block text-xs font-medium text-[var(--color-mgmt-text-secondary)]"
+          >
+            Notes
+          </label>
+          <textarea
+            id="submission-notes"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            rows={4}
+            className={inputClass}
+          />
+        </div>
+        <div className="flex justify-end">
+          <MgmtButton type="submit" variant="secondary" disabled={busy}>
+            {busy ? "Saving…" : "Save status"}
+          </MgmtButton>
+        </div>
+      </form>
+    </SectionCard>
   );
 }

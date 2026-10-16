@@ -1,4 +1,6 @@
 import { NAV_LINKS } from "@/shared/lib/home-content";
+import { BookViewingLink } from "./book-viewing-link";
+import { ProposalLink } from "./proposal-link";
 
 const SOCIALS = [
   {
@@ -100,12 +102,9 @@ export function Navbar() {
               ))}
             </ul>
 
-            <a
-              href="/contact#viewing"
-              className="hidden bg-ivory px-6 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-navy transition-colors duration-500 hover:bg-white md:inline-block"
-            >
+            <BookViewingLink className="hidden bg-ivory px-6 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-navy transition-colors duration-500 hover:bg-white md:inline-block">
               Book a Viewing
-            </a>
+            </BookViewingLink>
 
             <details className="group lg:hidden">
               <summary
@@ -142,18 +141,12 @@ export function Navbar() {
                 </ul>
 
                 <div className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
-                  <a
-                    href="/contact#viewing"
-                    className="bg-ivory px-6 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-navy"
-                  >
+                  <BookViewingLink className="bg-ivory px-6 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">
                     Book a Viewing
-                  </a>
-                  <a
-                    href="/contact#proposal"
-                    className="bg-ivory/10 px-6 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-ivory"
-                  >
+                  </BookViewingLink>
+                  <ProposalLink className="bg-ivory/10 px-6 py-4 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-ivory">
                     Request a Proposal
-                  </a>
+                  </ProposalLink>
                 </div>
 
                 <div className="mx-auto mt-8 flex max-w-3xl items-center justify-between">
@@ -178,12 +171,9 @@ export function Navbar() {
 
       {/* Mobile sticky action bar */}
       <div className="fixed inset-x-0 bottom-0 z-40 flex gap-2 bg-navy/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden">
-        <a
-          href="/contact#viewing"
-          className="flex-1 bg-ivory py-3.5 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-navy"
-        >
+        <BookViewingLink className="flex-1 bg-ivory py-3.5 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">
           Book a Viewing
-        </a>
+        </BookViewingLink>
         <a
           href="#"
           aria-label="WhatsApp us"

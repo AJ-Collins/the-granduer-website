@@ -29,6 +29,7 @@ export const LIMITERS = {
   "admin-write": { limit: 60, windowMs: MIN, key: (c) => `admin-write:${c.userId ?? ipKey(c.ip)}` },
   "contact-email": { limit: 3, windowMs: HOUR, key: (c) => `contact-email:${emailKey(c.email ?? c.ip)}` },
   "enquiry-ip": { limit: 10, windowMs: MIN, key: (c) => `enquiry-ip:${ipKey(c.ip)}` },
+  analytics: { limit: 60, windowMs: MIN, key: (c) => `analytics:${ipKey(c.ip)}` },
   uploads: { limit: 30, windowMs: MIN, key: (c) => `uploads:${c.userId ?? ipKey(c.ip)}` },
 } satisfies Record<string, Limiter>;
 

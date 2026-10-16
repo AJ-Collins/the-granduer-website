@@ -8,7 +8,18 @@ import { useEnquiryForm } from "./use-enquiry-form";
 
 /** Request a Proposal. */
 export function ProposalForm() {
-  const { status, onSubmit } = useEnquiryForm("proposal");
+  const { status, onSubmit } = useEnquiryForm("proposal", (ok) => {
+    if (!ok) return;
+    try {
+      fetch("/api/analytics/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+        body: JSON.stringify({ eventName: "proposal_form_submit", path: window.location.pathname }),
+      }).catch(() => {});
+    } catch {
+    }
+  });
   return (
     <EnquiryFormShell
       id="proposal"

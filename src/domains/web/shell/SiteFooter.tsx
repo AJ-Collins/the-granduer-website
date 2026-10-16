@@ -1,4 +1,6 @@
 import { NAV_LINKS } from "@/shared/lib/home-content";
+import { BookViewingLink } from "./book-viewing-link";
+import { ProposalLink } from "./proposal-link";
 
 const STRIP = [
   {
@@ -82,20 +84,14 @@ export function SiteFooter() {
               </span>
               <ul className="mt-6 space-y-3">
                 <li>
-                  <a
-                    href="/contact#viewing"
-                    className="font-display text-2xl text-ivory/85 transition-colors duration-500 hover:text-white"
-                  >
+                  <BookViewingLink className="font-display text-2xl text-ivory/85 transition-colors duration-500 hover:text-white">
                     Book a Viewing
-                  </a>
+                  </BookViewingLink>
                 </li>
                 <li>
-                  <a
-                    href="/contact#proposal"
-                    className="font-display text-2xl text-ivory/85 transition-colors duration-500 hover:text-white"
-                  >
+                  <ProposalLink className="font-display text-2xl text-ivory/85 transition-colors duration-500 hover:text-white">
                     Request a Proposal
-                  </a>
+                  </ProposalLink>
                 </li>
                 <li>
                   <a
