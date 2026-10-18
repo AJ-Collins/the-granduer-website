@@ -6,24 +6,6 @@ import { HERO } from "@/shared/lib/home-content";
 const VIDEO_SRC =
   "https://videos.pexels.com/video-files/34926864/14794499_1920_1080_24fps.mp4";
 
-const TILES = [
-  {
-    src: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&h=1400&q=80",
-    alt: "The main hall at D'Grandeur Event Centre",
-    height: "h-[62svh]",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=800&h=1600&q=80",
-    alt: "A wedding reception at D'Grandeur Event Centre",
-    height: "h-[76svh]",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&h=1400&q=80",
-    alt: "A celebration at D'Grandeur Event Centre",
-    height: "h-[62svh]",
-  },
-];
-
 /** * Full-screen cinematic hero. */
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -65,33 +47,6 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(19,30,42,0.4),transparent_65%)]"
       />
-
-      {/* Three tall tiles (md and up only). Hover one to make it the focal point. */}
-      <div className="group/row absolute inset-0 z-[5] hidden items-center justify-center gap-5 md:flex">
-        {TILES.map((t, i) => (
-          <div
-            key={t.alt}
-            style={{ transitionDelay: ready ? `${i * 160}ms` : "0ms" }}
-            className={`group/tile relative w-[27vw] max-w-[300px] transition-[opacity,transform] duration-[1200ms] ease-dg hover:z-20 ${t.height} ${
-              ready ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            <div className="absolute inset-0 overflow-hidden opacity-60 shadow-2xl shadow-navy-deep/60 transition-[scale,opacity,filter] duration-[900ms] ease-dg group-hover/row:scale-[0.95] group-hover/row:opacity-30 group-hover/row:saturate-50 group-hover/tile:scale-[1.2]! group-hover/tile:opacity-100! group-hover/tile:saturate-100! [@media(hover:none)]:opacity-75">
-              <img
-                src={t.src}
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-navy-deep/25 transition-colors duration-[900ms] ease-dg group-hover/tile:bg-transparent"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
 
       {/* Content (ignores the pointer so tile hovers pass through; links still work) */}
       <div className="pointer-events-none relative z-10 flex w-full max-w-6xl flex-col items-center">
