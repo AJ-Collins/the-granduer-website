@@ -1,33 +1,23 @@
 import { Navbar } from "@/domains/web/shell/Navbar";
 import { Hero } from "@/domains/web/home/Hero";
-import { Intro } from "@/domains/web/home/Intro";
-import { VenueFacts } from "@/domains/web/home/VenueFacts";
-import { CelebrateMosaic } from "@/domains/web/home/CelebrateMosaic";
-import { VenueStack } from "@/domains/web/home/VenueStack";
-import { ExperienceJourney } from "@/domains/web/home/ExperienceJourney";
-import { TransformationsGallery } from "@/domains/web/home/TransformationsGallery";
-import { ExperienceMoments } from "@/domains/web/home/ExperienceMoments";
-import { Testimonials } from "@/domains/web/home/Testimonials";
+import { Welcome } from "@/domains/web/home/Welcome";
+import { AtAGlance } from "@/domains/web/home/AtAGlance";
+import { CelebrateYourWay } from "@/domains/web/home/CelebrateYourWay";
 import { FinalCTA } from "@/domains/web/home/FinalCTA";
 import { SiteFooter } from "@/domains/web/shell/SiteFooter";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="min-h-screen bg-[#f4f1ea] text-[#1c2c3c] flex flex-col font-sans">
       <Navbar />
-      <main>
+      <main className="flex-1">
         <Hero />
-        <Intro />
-        <VenueFacts />
-        <CelebrateMosaic />
-        <VenueStack />
-        <ExperienceJourney />
-        <TransformationsGallery />
-        <ExperienceMoments />
-        <Testimonials />
+        <Welcome />
+        <AtAGlance />
+        <CelebrateYourWay />
         <FinalCTA />
       </main>
       <SiteFooter />
-    </>
+    </div>
   );
 }
